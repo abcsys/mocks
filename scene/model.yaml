@@ -1,0 +1,40 @@
+group: mock.digi.dev
+version: v1
+kind: Scene
+meta:
+  refresh_interval: number
+object_config:
+  openapi:
+    additionalProperties:
+      properties:
+        enter_prob:
+          type: number
+        leave_prob:
+          type: number
+        class:
+          type: string
+      type: object
+    type: object
+data:
+  input:
+    url: string
+  output:
+    objects:
+      openapi:
+        items:
+          additionalProperties:
+            properties:
+              h:
+                type: number
+              w:
+                type: number
+              x1:
+                type: number
+              x2:
+                type: number
+            type: object
+          type: object
+        type: array
+obs:
+  reason: string
+
