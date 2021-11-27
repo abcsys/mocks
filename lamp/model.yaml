@@ -1,0 +1,6 @@
+group: mock.digi.dev
+version: v1
+kind: lamp
+control:
+  power: string
+  brightness: number

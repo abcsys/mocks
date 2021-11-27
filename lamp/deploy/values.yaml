@@ -1,0 +1,9 @@
+group: mock.digi.dev
+image: silveryfu/lamp:latest
+imagepull: Always
+mounter: false
+name: lamp
+namespace: default
+plural: lamps
+version: v1
+pool_provider: zed

@@ -1,0 +1,8 @@
+apiVersion: digi.dev/v1
+kind: lamp
+metadata:
+  name: lamp-test
+spec:
+  control:
+    brightness: -1
+    power: -1
