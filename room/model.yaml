@@ -1,0 +1,41 @@
+group: mock.digi.dev
+version: v1
+kind: Room
+meta:
+  modeConfig:
+    openapi:
+      additionalProperties:
+        properties:
+          power:
+            type: string
+          brightness:
+            type: number
+        type: object
+      type: object
+control:
+  brightness: number
+  mode: string
+  ambiance_color: string
+obs:
+  reason: string
+  objects:
+    openapi:
+      items:
+        additionalProperties:
+          properties:
+            h:
+              type: number
+            w:
+              type: number
+            x1:
+              type: number
+            x2:
+              type: number
+          type: object
+        type: object
+      type: array
+reflex: object
+mount:
+  mock.digi.dev/v1/lamps: object
+  mock.digi.dev/v1/scenes: object
+
