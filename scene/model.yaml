@@ -3,6 +3,7 @@ version: v1
 kind: Scene
 meta:
   refresh_interval: number
+  pause: boolean
 object_config:
   openapi:
     additionalProperties:

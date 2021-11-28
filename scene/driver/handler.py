@@ -102,6 +102,8 @@ def init(model):
     global scene
     if scene is not None:
         scene.stop()
+    if util.deep_get(model, "meta.pause", False):
+        return
 
     digi.logger.info("init scene")
     objects = util.deep_get(model, "object_config", {})

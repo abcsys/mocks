@@ -51,6 +51,8 @@ spec:
                 type: object
               meta:
                 properties:
+                  pause:
+                    type: boolean
                   refresh_interval:
                     type: number
                 type: object

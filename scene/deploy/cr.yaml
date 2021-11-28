@@ -5,6 +5,7 @@ metadata:
 spec:
   meta:
     refresh_interval: 1
+    pause: true
   object_config:
     alice:
       enter_prob: 0.2
