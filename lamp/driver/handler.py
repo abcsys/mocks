@@ -4,14 +4,14 @@ import digi.on as on
 
 @on.control("power")
 def h0(p):
-    p["status"] = p.get("intent",
-                        p.get("status", "undef"))
+    if "intent" in p:
+        p["status"] = p["intent"]
 
 
 @on.control("brightness")
 def h1(b):
-    b["status"] = b.get("intent",
-                        b.get("status", "-1"))
+    if "intent" in b:
+        b["status"] = b["intent"]
 
 
 if __name__ == '__main__':

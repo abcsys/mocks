@@ -5,6 +5,6 @@ metadata:
 spec:
   control:
     brightness:
-      intent: 0.8
+      intent: 0.4
     mode:
       intent: idle

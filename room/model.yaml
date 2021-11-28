@@ -38,4 +38,3 @@ reflex: object
 mount:
   mock.digi.dev/v1/lamps: object
   mock.digi.dev/v1/scenes: object
-
