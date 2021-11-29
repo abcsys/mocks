@@ -120,7 +120,7 @@ def do_obs(parent, mounts):
     # XXX handle at most one scene only
     for _, s in mounts.get(gvr_scene, {}).items():
         objects = deep_get(s, "spec.data.output.objects", None)
-        deep_set(room, f"obs.objects", objects)
+        deep_set(room, f"obs.objects", objects, create=True)
 
 
 @on.mount
