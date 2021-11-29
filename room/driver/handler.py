@@ -160,11 +160,11 @@ def do_mode(parent, mounts):
         if not (_min <= sum(_bright) <= _max) and len(_bright) > 0:
             _bright_intent = deep_get(room, "control.brightness.intent")
             if _min <= _bright_intent <= _max:
-                _bright_div = _bright_intent / len(_bright)
+                _bright_div = round(_bright_intent / len(_bright), 2)
             elif _bright_intent < _min:
-                _bright_div = _min / len(_bright)
+                _bright_div = round(_min / len(_bright), 2)
             else:
-                _bright_div = _max / len(_bright)
+                _bright_div = round(_max / len(_bright), 2)
             _set_bright(devices, _bright_div)
 
 

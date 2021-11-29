@@ -36,14 +36,19 @@ spec:
                         items:
                           additionalProperties:
                             properties:
-                              h:
-                                type: number
-                              w:
-                                type: number
-                              x1:
-                                type: number
-                              x2:
-                                type: number
+                              location:
+                                properties:
+                                  h:
+                                    type: number
+                                  w:
+                                    type: number
+                                  x1:
+                                    type: number
+                                  x2:
+                                    type: number
+                                type: object
+                              name:
+                                type: string
                             type: object
                           type: object
                         type: array

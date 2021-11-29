@@ -67,10 +67,13 @@ class Scene(threading.Thread):
                 continue
 
             object_to_enter[name] = {
-                "x1": random.randint(100, 1000),
-                "x2": random.randint(100, 1000),
-                "w": random.randint(0, 200),
-                "h": random.randint(0, 200),
+                "location": {
+                    "x1": random.randint(100, 1000),
+                    "x2": random.randint(100, 1000),
+                    "w": random.randint(0, 200),
+                    "h": random.randint(0, 200),
+                },
+                "name": name if self.name_to_class[name] == "human" else "misc",
             }
 
         object_to_leave = list()
@@ -86,8 +89,7 @@ class Scene(threading.Thread):
 
         self.cur_objects.update(object_to_enter)
 
-        return [{name if self.name_to_class[name] == "human"
-                 else self.name_to_class[name]: loc}
+        return [{self.name_to_class[name]: loc}
                 for name, loc in self.cur_objects.items()]
 
 
