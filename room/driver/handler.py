@@ -11,6 +11,16 @@ Room:
     - brightness is "divided" uniformly across lamps
 - When scene is mounted, keep track of what objects are in the room.
 
+Control:
+- Room's modes, each with a preset lamp power and brightness
+- Room's brightness. Only effective when the lamps' powers are on 
+  but otherwise overwrites the mode's preset brightness value.
+
+Automation:
+- In adaptive mode, if a scene is mounted then automatically
+  turn on and off lamps based on human presence.
+- TBD meta.turn_off_delay  
+
 Mounts:
 -  mock.digi.dev/v1/lamps
 -  mock.digi.dev/v1/scenes
@@ -28,7 +38,6 @@ mode_config = {
                 "max": 1,
                 "min": 0.7,
             },
-            "ambiance_color": "white",
         }
     },
     "idle": {
@@ -42,6 +51,15 @@ mode_config = {
     "sleep": {
         "lamps": {
             "power": "off",
+        }
+    },
+    "adaptive": {
+        # turn on lamps upon human presence
+        # default brightness set to max(brightness.min, last_value)
+        "lamps": {
+            "brightness": {
+                "min": 0.5,
+            },
         }
     },
 }
@@ -118,54 +136,71 @@ def do_room_status(parent, mounts):
 def do_obs(parent, mounts):
     room = parent
     # XXX handle at most one scene only
-    for _, s in mounts.get(gvr_scene, {}).items():
+    scenes = mounts.get(gvr_scene, {})
+    if len(scenes) < 1:
+        deep_set(room, f"obs.objects", None, create=True)
+        return
+
+    for _, s in scenes.items():
         objects = deep_get(s, "spec.data.output.objects", None)
         deep_set(room, f"obs.objects", objects, create=True)
+
 
 
 @on.mount
 @on.control("mode", prio=0)
 def do_mode(parent, mounts):
-    room, devices = parent, mounts
+    room = parent
 
     mode = deep_get(room, "control.mode.intent")
     if mode is None:
         return
 
-    _pc = lamp_converters[gvr_lamp]["power"]["to"]
-    _bc = lamp_converters[gvr_lamp]["brightness"]["to"]
-    _lamp_config, _bright = mode_config[mode]["lamps"], list()
+    power_convert = lamp_converters[gvr_lamp]["power"]["to"]
+    brightness_convert = lamp_converters[gvr_lamp]["brightness"]["to"]
+    lamp_config, room_brightness = mode_config[mode]["lamps"], list()
+
+    objects = deep_get(room, "obs.objects", {})
+    human_presence = None if objects is None else any("human" in o for o in objects)
+    deep_set(room, f"obs.human_presence", human_presence, create=True)
 
     # iterate over individual lamp
-    for n, _l in devices.get(gvr_lamp, {}).items():
-
-        _p = deep_get(_l, "spec.control.power.intent")
-        _b = deep_get(_l, "spec.control.brightness.intent", 0)
-
-        # set power
-        if "power" in _lamp_config:
-            deep_set(_l, "spec.control.power.intent",
-                     _pc(_lamp_config["power"]))
+    for _, lamp in mounts.get(gvr_lamp, {}).items():
+        power_intent = None
+        if "power" in lamp_config:
+            power_intent = lamp_config["power"]
+        if mode == "adaptive":
+            if human_presence:
+                power_intent = power_convert("on")
+            else:
+                power_intent = power_convert("off")
+        if power_intent is not None:
+            deep_set(lamp, "spec.control.power.intent",
+                     power_convert(power_intent))
 
         # add brightness
-        if _pc(_p) == "on":
-            _bright.append(_bc(_b))
+        power = deep_get(lamp, "spec.control.power.intent", "")
+        brightness = deep_get(lamp, "spec.control.brightness.intent", 0)
 
-    if "brightness" in _lamp_config:
-        _max = _lamp_config["brightness"].get("max", 1)
-        _min = _lamp_config["brightness"].get("min", 0)
+        if power_convert(power) == "on":
+            room_brightness.append(brightness_convert(brightness))
+
+    if "brightness" in lamp_config:
+        _max = lamp_config["brightness"].get("max", 1)
+        _min = lamp_config["brightness"].get("min", 0)
 
         # reset the lamps' brightness only when they
         # don't fit the mode
-        if not (_min <= sum(_bright) <= _max) and len(_bright) > 0:
+        if not (_min <= sum(room_brightness) <= _max) and len(room_brightness) > 0:
             _bright_intent = deep_get(room, "control.brightness.intent")
+
             if _min <= _bright_intent <= _max:
-                _bright_div = round(_bright_intent / len(_bright), 2)
+                _bright_div = round(_bright_intent / len(room_brightness), 2)
             elif _bright_intent < _min:
-                _bright_div = round(_min / len(_bright), 2)
+                _bright_div = round(_min / len(room_brightness), 2)
             else:
-                _bright_div = round(_max / len(_bright), 2)
-            _set_bright(devices, _bright_div)
+                _bright_div = round(_max / len(room_brightness), 2)
+            _set_bright(mounts, _bright_div)
 
 
 @on.mount

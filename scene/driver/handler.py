@@ -108,7 +108,7 @@ def init(model):
         return
 
     digi.logger.info("init scene")
-    objects = util.deep_get(model, "object_config", {})
+    objects = util.deep_get(model, "meta.object_config", {})
     interval = util.deep_get(model, "meta.refresh_interval", 1)
     seed = util.deep_get(model, "meta.seed", 42)
 

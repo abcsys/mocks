@@ -56,21 +56,21 @@ spec:
                 type: object
               meta:
                 properties:
+                  object_config:
+                    additionalProperties:
+                      properties:
+                        class:
+                          type: string
+                        enter_prob:
+                          type: number
+                        leave_prob:
+                          type: number
+                      type: object
+                    type: object
                   pause:
                     type: boolean
                   refresh_interval:
                     type: number
-                type: object
-              object_config:
-                additionalProperties:
-                  properties:
-                    class:
-                      type: string
-                    enter_prob:
-                      type: number
-                    leave_prob:
-                      type: number
-                  type: object
                 type: object
               obs:
                 properties:

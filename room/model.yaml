@@ -18,6 +18,7 @@ control:
   ambiance_color: string
 obs:
   reason: string
+  human_presence: boolean
   objects:
     openapi:
       items:

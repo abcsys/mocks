@@ -5,11 +5,6 @@ metadata:
 spec:
   control:
     brightness:
-      intent: 0.4
+      intent: 1
     mode:
-      intent: idle
-#  reflex:
-#    motion-mode:
-#      policy: 'if any(.obs.objects; . == "")  <= 600 then .root.control.mode.intent = "work" else . end'
-#        priority: 1
-#        processor: jq
+      intent: adaptive

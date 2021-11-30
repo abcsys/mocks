@@ -6,23 +6,23 @@ spec:
   meta:
     refresh_interval: 1
     pause: true
-  object_config:
-    alice:
-      enter_prob: 0.2
-      leave_prob: 0.1
-      class: human
-    bob:
-      enter_prob: 0.4
-      leave_prob: 0.1
-      class: human
-    charlie:
-      enter_prob: 0.8
-      leave_prob: 0.1
-      class: human
-    dog:
-      enter_prob: 0.2
-      leave_prob: 0.1
-      class: dog
+    object_config:
+      alice:
+        enter_prob: 0.2
+        leave_prob: 0.1
+        class: human
+      bob:
+        enter_prob: 0.4
+        leave_prob: 0.1
+        class: human
+      charlie:
+        enter_prob: 0.8
+        leave_prob: 0.1
+        class: human
+      dog:
+        enter_prob: 0.2
+        leave_prob: 0.1
+        class: dog
   data:
     input:
       url: rtsp://192.168.1.16/live
