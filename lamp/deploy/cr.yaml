@@ -8,3 +8,5 @@ spec:
       intent: 0.8
     power: 
       intent: "on"
+  meta:
+    load_interval: 1

@@ -87,6 +87,11 @@ spec:
                                       type: string
                                   type: object
                               type: object
+                            meta:
+                              properties:
+                                load_interval:
+                                  type: number
+                              type: object
                           type: object
                         status:
                           type: string

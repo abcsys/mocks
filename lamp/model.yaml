@@ -4,3 +4,5 @@ kind: lamp
 control:
   power: string
   brightness: number
+meta:
+  load_interval: number

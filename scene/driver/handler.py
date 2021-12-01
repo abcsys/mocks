@@ -39,10 +39,7 @@ class Scene(threading.Thread):
         self._stop_flag.set()
 
     def gen_scene(self):
-        while True:
-            if self._stop_flag.is_set():
-                break
-
+        while not self._stop_flag.is_set():
             util.check_gen_and_patch_spec(*digi.auri,
                                           spec={
                                               "data": {
