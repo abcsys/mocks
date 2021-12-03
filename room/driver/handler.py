@@ -1,8 +1,7 @@
 import digi
 import digi.on as on
 
-import digi.util as util
-from digi.util import put, deep_get, deep_set, mount_size
+from digi.util import deep_get, deep_set, mount_size
 
 """
 Room:
@@ -82,13 +81,6 @@ lamp_converters = {
 @on.mount
 def do_room_status(parent, mounts):
     room, devices = parent, mounts
-    # if no mounted devices, set the
-    # status to intent
-    if util.mount_size(mounts) == 0:
-        for _, v in room.items():
-            if "intent" in v:
-                v["status"] = v["intent"]
-        return
 
     def set_room_mode_brightness():
         room_brightness, matched = 0, True
@@ -114,6 +106,8 @@ def do_room_status(parent, mounts):
             if power_convert(lamp_power) == "on":
                 room_brightness += brightness_convert(lamp_brightness)
 
+        room_brightness = min(room_brightness, 1)
+        digi.logger.info("DEBUG: " + str(room_brightness))
         deep_set(room, f"control.brightness.status", room_brightness)
 
         if "brightness" in lamp_config:
@@ -144,7 +138,6 @@ def do_obs(parent, mounts):
     for _, s in scenes.items():
         objects = deep_get(s, "spec.data.output.objects", None)
         deep_set(room, f"obs.objects", objects, create=True)
-
 
 
 @on.mount

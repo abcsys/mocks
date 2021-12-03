@@ -9,10 +9,14 @@ def do_power(p):
         p["status"] = p["intent"]
 
 
-@on.control("brightness")
-def do_brightness(b):
+@on.control
+def do_brightness(sv):
+    p, b = sv.get("power", {}), sv.get("brightness", {})
     if "intent" in b:
-        b["status"] = b["intent"]
+        if p.get("status", "off") == "on":
+            b["status"] = b["intent"]
+        else:
+            b["status"] = 0
 
 
 def load():

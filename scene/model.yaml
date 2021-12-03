@@ -1,21 +1,6 @@
 group: mock.digi.dev
 version: v1
 kind: Scene
-meta:
-  refresh_interval: number
-  pause: boolean
-  object_config:
-    openapi:
-      additionalProperties:
-        properties:
-          enter_prob:
-            type: number
-          leave_prob:
-            type: number
-          class:
-            type: string
-        type: object
-      type: object
 data:
   input:
     url: string
@@ -43,4 +28,19 @@ data:
         type: array
 obs:
   reason: string
+meta:
+  refresh_interval: number
+  pause: boolean
+  object_config:
+    openapi:
+      additionalProperties:
+        properties:
+          enter_prob:
+            type: number
+          leave_prob:
+            type: number
+          class:
+            type: string
+        type: object
+      type: object
 

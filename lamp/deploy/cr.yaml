@@ -5,8 +5,8 @@ metadata:
 spec:
   control:
     brightness: 
-      intent: 0.8
+      intent: 0.2
     power: 
-      intent: "on"
+      intent: "off"
   meta:
     load_interval: 1

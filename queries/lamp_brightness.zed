@@ -3,5 +3,3 @@ from (
  l2 => select control.brightness.status as b where control.power.status=='on';
  l3 => select control.brightness.status as b where control.power.status=='on';
 ) | avg(b)
-
-

@@ -7,4 +7,4 @@ spec:
     brightness:
       intent: 1
     mode:
-      intent: adaptive
+      intent: work
