@@ -12,6 +12,7 @@ meta:
             type: number
         type: object
       type: object
+  load_interval: number
 control:
   brightness: number
   mode: string

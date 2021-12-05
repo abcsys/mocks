@@ -49,6 +49,8 @@ spec:
                 type: object
               meta:
                 properties:
+                  load_interval:
+                    type: number
                   modeConfig:
                     additionalProperties:
                       properties:

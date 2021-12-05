@@ -1,6 +1,7 @@
 import digi
 import digi.on as on
 
+import digi.util as util
 from digi.util import deep_get, deep_set, mount_size
 
 """
@@ -107,7 +108,6 @@ def do_room_status(parent, mounts):
                 room_brightness += brightness_convert(lamp_brightness)
 
         room_brightness = min(room_brightness, 1)
-        digi.logger.info("DEBUG: " + str(room_brightness))
         deep_set(room, f"control.brightness.status", room_brightness)
 
         if "brightness" in lamp_config:
@@ -222,6 +222,43 @@ def _set_bright(ds, b):
     for _, _l in ds.get(gvr_lamp, {}).items():
         deep_set(_l, "spec.control.brightness.intent",
                  _lc(b))
+
+def load():
+    model = digi.rc.view()
+
+    record = {
+        "brightness": util.deep_get(model, "control.brightness.status"),
+    }
+
+    mounts = model.get("mount", {})
+    lamps = mounts.get(gvr_lamp, None)
+    if lamps is not None:
+        record.update({"num_lamp": len(lamps)})
+
+    objects = util.deep_get(model, f"obs.objects", None)
+    if objects is not None:
+        num_human, humans = 0, list()
+        for o in objects:
+            if "human" in o:
+                num_human += 1
+                humans.append(o["human"].get("name", None))
+        record.update({"num_human": num_human, "human": humans})
+
+    digi.pool.load([record])
+
+
+loader = util.Loader(load_fn=load)
+
+
+@on.meta
+def do_meta(meta):
+    i = meta.get("load_interval", -1)
+    if i < 0:
+        digi.logger.info("Stop loader")
+        loader.stop()
+    else:
+        loader.reset(i)
+        loader.start()
 
 
 if __name__ == '__main__':

@@ -8,3 +8,5 @@ spec:
       intent: 1
     mode:
       intent: work
+  meta:
+    load_interval: 1
