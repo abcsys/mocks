@@ -34,22 +34,22 @@ spec:
                     properties:
                       objects:
                         items:
-                          additionalProperties:
-                            properties:
-                              location:
-                                properties:
-                                  h:
-                                    type: number
-                                  w:
-                                    type: number
-                                  x1:
-                                    type: number
-                                  x2:
-                                    type: number
-                                type: object
-                              name:
-                                type: string
-                            type: object
+                          properties:
+                            class:
+                              type: string
+                            location:
+                              properties:
+                                h:
+                                  type: number
+                                w:
+                                  type: number
+                                x1:
+                                  type: number
+                                x2:
+                                  type: number
+                              type: object
+                            name:
+                              type: string
                           type: object
                         type: array
                     type: object

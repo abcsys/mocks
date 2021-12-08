@@ -64,6 +64,7 @@ class Scene(threading.Thread):
                 continue
 
             object_to_enter[name] = {
+                "class": self.name_to_class[name],
                 "location": {
                     "x1": random.randint(100, 1000),
                     "x2": random.randint(100, 1000),
@@ -86,8 +87,7 @@ class Scene(threading.Thread):
 
         self.cur_objects.update(object_to_enter)
 
-        return [{self.name_to_class[name]: loc}
-                for name, loc in self.cur_objects.items()]
+        return [o for _, o in self.cur_objects.items()]
 
 
 def happen(prob):
