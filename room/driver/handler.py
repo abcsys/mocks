@@ -154,7 +154,8 @@ def do_mode(parent, mounts):
     lamp_config, room_brightness = mode_config[mode]["lamps"], list()
 
     objects = deep_get(room, "obs.objects", {})
-    human_presence = None if objects is None else any("human" in o for o in objects)
+    human_presence = None if objects is None \
+        else any(o.get("class", None) == "human" in o for o in objects)
     deep_set(room, f"obs.human_presence", human_presence, create=True)
 
     # iterate over individual lamp
