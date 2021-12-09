@@ -5,8 +5,8 @@ metadata:
 spec:
   group: mock.digi.dev
   names:
-    kind: lamp
-    listKind: lampList
+    kind: Lamp
+    listKind: LampList
     plural: lamps
     singular: lamp
   scope: Namespaced

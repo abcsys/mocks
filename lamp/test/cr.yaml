@@ -1,8 +1,10 @@
-apiVersion: digi.dev/v1
+apiVersion: mock.digi.dev/v1
 kind: lamp
 metadata:
   name: lamp-test
 spec:
   control:
-    brightness: -1
-    power: -1
+    brightness:
+      intent: 0.1
+    power:
+      intent: "off"

@@ -1,5 +1,5 @@
 group: mock.digi.dev
-image: silveryfu/lamp:latest
+image: silveryfu/lamp.v1.mock.digi.dev:latest
 imagepull: Always
 mounter: false
 name: lamp

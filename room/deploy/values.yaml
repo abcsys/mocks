@@ -5,5 +5,5 @@ version: v1
 plural: rooms
 mounter: true
 
-image: silveryfu/room:latest
+image: silveryfu/room.v1.mock.digi.dev:latest
 imagepull: Always

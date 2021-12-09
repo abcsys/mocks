@@ -8,9 +8,3 @@ spec:
       intent: 0.8
     mode:
       intent: idle
-  reflex:
-    motion-mode:
-      policy: 'if $time - ."motionsensor-test".obs.last_triggered_time <= 600
-                           then .root.control.mode.intent = "work" else . end'
-      priority: -1
-      processor: jq

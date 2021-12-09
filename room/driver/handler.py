@@ -155,7 +155,7 @@ def do_mode(parent, mounts):
 
     objects = deep_get(room, "obs.objects", {})
     human_presence = None if objects is None \
-        else any(o.get("class", None) == "human" in o for o in objects)
+        else any(o.get("class", None) == "human" for o in objects)
     deep_set(room, f"obs.human_presence", human_presence, create=True)
 
     # iterate over individual lamp

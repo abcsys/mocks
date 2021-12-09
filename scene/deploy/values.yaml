@@ -1,5 +1,5 @@
 group: mock.digi.dev
-image: silveryfu/scene:latest
+image: silveryfu/scene.v1.mock.digi.dev:latest
 imagepull: Always
 mounter: false
 name: scene
