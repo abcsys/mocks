@@ -18,6 +18,11 @@ mode_config = {
             "mode": "sleep"
         }
     },
+    "sleep": {
+        "rooms": {
+            "mode": "sleep"
+        }
+    },
     "work": {
         "rooms": {
             "mode": "work"

@@ -2,7 +2,6 @@ import digi
 import digi.on as on
 
 import digi.util as util
-from digi.util import deep_get, deep_set, mount_size
 
 """
 Room:
@@ -86,7 +85,7 @@ def do_room_status(parent, mounts):
     def set_room_mode_brightness():
         room_brightness, matched = 0, True
 
-        mode = deep_get(room, "control.mode.intent")
+        mode = util.get(room, "control.mode.intent")
         lamp_config = mode_config[mode]["lamps"]
 
         power_convert = lamp_converters[gvr_lamp]["power"]["from"]
@@ -98,8 +97,8 @@ def do_room_status(parent, mounts):
                 continue
 
             lamp_spec = lamp["spec"]
-            lamp_power = deep_get(lamp_spec, "control.power.status", None)
-            lamp_brightness = deep_get(lamp_spec, "control.brightness.status", 0)
+            lamp_power = util.get(lamp_spec, "control.power.status", None)
+            lamp_brightness = util.get(lamp_spec, "control.brightness.status", 0)
 
             if "power" in lamp_config and lamp_config["power"] != power_convert(lamp_power):
                 matched = False
@@ -108,7 +107,7 @@ def do_room_status(parent, mounts):
                 room_brightness += brightness_convert(lamp_brightness)
 
         room_brightness = min(room_brightness, 1)
-        deep_set(room, f"control.brightness.status", room_brightness)
+        util.update(room, f"control.brightness.status", round(room_brightness, 2))
 
         if "brightness" in lamp_config:
             _max = lamp_config["brightness"].get("max", 1)
@@ -116,7 +115,7 @@ def do_room_status(parent, mounts):
             if not (_min <= room_brightness <= _max):
                 matched = False
 
-        deep_set(room, f"control.mode.status", mode if matched else "undef")
+        util.update(room, f"control.mode.status", mode if matched else "undef")
 
     # other devices
     # ...
@@ -132,12 +131,12 @@ def do_obs(parent, mounts):
     # XXX handle at most one scene only
     scenes = mounts.get(gvr_scene, {})
     if len(scenes) < 1:
-        deep_set(room, f"obs.objects", None, create=True)
+        util.update(room, f"obs.objects", None, create=True)
         return
 
     for _, s in scenes.items():
-        objects = deep_get(s, "spec.data.output.objects", None)
-        deep_set(room, f"obs.objects", objects, create=True)
+        objects = util.get(s, "spec.data.output.objects", None)
+        util.update(room, f"obs.objects", objects, create=True)
 
 
 @on.mount
@@ -145,7 +144,7 @@ def do_obs(parent, mounts):
 def do_mode(parent, mounts):
     room = parent
 
-    mode = deep_get(room, "control.mode.intent")
+    mode = util.get(room, "control.mode.intent")
     if mode is None:
         return
 
@@ -153,10 +152,10 @@ def do_mode(parent, mounts):
     brightness_convert = lamp_converters[gvr_lamp]["brightness"]["to"]
     lamp_config, room_brightness = mode_config[mode]["lamps"], list()
 
-    objects = deep_get(room, "obs.objects", {})
+    objects = util.get(room, "obs.objects", {})
     human_presence = None if objects is None \
         else any(o.get("class", None) == "human" for o in objects)
-    deep_set(room, f"obs.human_presence", human_presence, create=True)
+    util.update(room, f"obs.human_presence", human_presence, create=True)
 
     # iterate over individual lamp
     for _, lamp in mounts.get(gvr_lamp, {}).items():
@@ -169,12 +168,12 @@ def do_mode(parent, mounts):
             else:
                 power_intent = power_convert("off")
         if power_intent is not None:
-            deep_set(lamp, "spec.control.power.intent",
-                     power_convert(power_intent))
+            util.update(lamp, "spec.control.power.intent",
+                        power_convert(power_intent))
 
         # add brightness
-        power = deep_get(lamp, "spec.control.power.intent", "")
-        brightness = deep_get(lamp, "spec.control.brightness.intent", 0)
+        power = util.get(lamp, "spec.control.power.intent", "")
+        brightness = util.get(lamp, "spec.control.brightness.intent", 0)
 
         if power_convert(power) == "on":
             room_brightness.append(brightness_convert(brightness))
@@ -186,7 +185,7 @@ def do_mode(parent, mounts):
         # reset the lamps' brightness only when they
         # don't fit the mode
         if not (_min <= sum(room_brightness) <= _max) and len(room_brightness) > 0:
-            _bright_intent = deep_get(room, "control.brightness.intent")
+            _bright_intent = util.get(room, "control.brightness.intent")
 
             if _min <= _bright_intent <= _max:
                 _bright_div = round(_bright_intent / len(room_brightness), 2)
@@ -201,14 +200,17 @@ def do_mode(parent, mounts):
 @on.control("brightness", prio=0)
 def do_brightness(parent, mounts):
     room, devices = parent, mounts
+    mode = util.get(room, "control.mode.intent")
+    if mode == "sleep":
+        return
 
-    brightness = deep_get(room, "control.brightness.intent")
+    brightness = util.get(room, "control.brightness.intent")
     if brightness is None:
         return
 
     num_active_lamp = \
-        mount_size(mounts, {gvr_lamp}, has_spec=True,
-                   cond=lambda m: deep_get(m, "spec.control.power.status") == "on")
+        util.mount_size(mounts, {gvr_lamp}, has_spec=True,
+                        cond=lambda m: util.get(m, "spec.control.power.status") == "on")
 
     if num_active_lamp < 1:
         return
@@ -221,14 +223,15 @@ def _set_bright(ds, b):
     _lc = lamp_converters[gvr_lamp]["brightness"]["to"]
 
     for _, _l in ds.get(gvr_lamp, {}).items():
-        deep_set(_l, "spec.control.brightness.intent",
-                 _lc(b))
+        util.update(_l, "spec.control.brightness.intent",
+                    _lc(b))
+
 
 def load():
     model = digi.rc.view()
 
     record = {
-        "brightness": util.deep_get(model, "control.brightness.status"),
+        "brightness": util.get(model, "control.brightness.status"),
     }
 
     mounts = model.get("mount", {})
@@ -236,7 +239,7 @@ def load():
     if lamps is not None:
         record.update({"num_lamp": len(lamps)})
 
-    objects = util.deep_get(model, f"obs.objects", None)
+    objects = util.get(model, f"obs.objects", None)
     if objects is not None:
         num_human, humans = 0, list()
         for o in objects:

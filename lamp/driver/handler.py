@@ -3,15 +3,12 @@ import digi.on as on
 import digi.util as util
 
 
-@on.control("power")
-def do_power(p):
-    if "intent" in p:
-        p["status"] = p["intent"]
-
-
 @on.control
 def do_brightness(sv):
     p, b = sv.get("power", {}), sv.get("brightness", {})
+    if "intent" in p:
+        p["status"] = p["intent"]
+
     if "intent" in b:
         if p.get("status", "off") == "on":
             b["status"] = b["intent"]
