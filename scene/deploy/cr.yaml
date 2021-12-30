@@ -8,16 +8,16 @@ spec:
     pause: false
     object_config:
       alice:
-        enter_prob: 0.2
-        leave_prob: 0.1
+        enter_prob: 0.5
+        leave_prob: 0.5
         class: human
       bob:
-        enter_prob: 0.4
-        leave_prob: 0.1
+        enter_prob: 0.2
+        leave_prob: 0.5
         class: human
       charlie:
         enter_prob: 0.8
-        leave_prob: 0.1
+        leave_prob: 0.5
         class: human
       dog:
         enter_prob: 0.2
