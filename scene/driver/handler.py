@@ -8,7 +8,7 @@ import digi.on as on
 import digi.util as util
 
 """
-Mock scene generates random objects if a url is provided.
+Mock scene generates random objects and their locations.
 """
 
 DEFAULT_ENTER_PROB = 0.1
@@ -94,24 +94,35 @@ def happen(prob):
     return random.random() < prob
 
 
-@on.attr("meta")
-@on.data("input")
-@on.attr("object_config")
+@on.meta
 def init(model):
     global scene
     if scene is not None:
         scene.stop()
-    if util.deep_get(model, "meta.pause", False):
+    if util.get(model, "meta.pause", False):
         return
 
     digi.logger.info("init scene")
-    objects = util.deep_get(model, "meta.object_config", {})
-    interval = util.deep_get(model, "meta.refresh_interval", 1)
-    seed = util.deep_get(model, "meta.seed", 42)
+    mode = util.get(model, "meta.mode", "gen")
 
-    scene = Scene(objects, interval)
-    random.seed(seed)
-    scene.start()
+    if mode == "gen":
+        objects = util.get(model, "meta.object_config", {})
+        interval = util.get(model, "meta.refresh_interval", 1)
+        seed = util.get(model, "meta.seed", 42)
+        scene = Scene(objects, interval)
+        random.seed(seed)
+        scene.start()
+    util.update(model, "data.output.objects", None)
+
+
+@on.data("input")
+def do_input(model):
+    mode = util.get(model, "meta.mode", "gen")
+    if mode != "copy":
+        return
+
+    input_obj = util.get(model, "data.input.objects")
+    util.update(model, "data.output.objects", input_obj)
 
 
 if __name__ == '__main__':

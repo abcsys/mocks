@@ -57,7 +57,7 @@ mode_config = {
         # default brightness set to max(brightness.min, last_value)
         "lamps": {
             "brightness": {
-                "min": 0.5,
+                "min": 0.0,
             },
         }
     },
@@ -238,6 +238,8 @@ def load():
     lamps = mounts.get(gvr_lamp, None)
     if lamps is not None:
         record.update({"num_lamp": len(lamps)})
+    else:
+        record.update({"num_lamp": 0})
 
     objects = util.get(model, f"obs.objects", None)
     if objects is not None:

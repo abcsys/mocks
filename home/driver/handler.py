@@ -28,8 +28,12 @@ mode_config = {
             "mode": "work"
         }
     },
+    "adaptive": {
+        "rooms": {
+            "mode": "adaptive"
+        }
+    },
     "emergency": {},
-    "smart": {}
 }
 
 
@@ -64,6 +68,7 @@ def do_home_status(parent, mounts):
         }
     deep_set(home, "obs.rooms", obs_rooms)
 
+
 @on.mount
 @on.control
 def do_home_mode(parent, mounts):
@@ -72,6 +77,26 @@ def do_home_mode(parent, mounts):
 
     rooms = mounts.get(room_gvr, {})
     deep_set_all(rooms, "spec.control.mode.intent", room_mode)
+
+
+def load():
+    model = digi.rc.view()
+    record = util.get(model, "obs", {})
+    digi.pool.load([record])
+
+
+loader = util.Loader(load_fn=load)
+
+
+@on.meta
+def do_meta(meta):
+    i = meta.get("load_interval", -1)
+    if i < 0:
+        digi.logger.info("Stop loader")
+        loader.stop()
+    else:
+        loader.reset(i)
+        loader.start()
 
 
 if __name__ == '__main__':

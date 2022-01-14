@@ -27,6 +27,26 @@ spec:
                 properties:
                   input:
                     properties:
+                      objects:
+                        items:
+                          properties:
+                            class:
+                              type: string
+                            location:
+                              properties:
+                                h:
+                                  type: number
+                                w:
+                                  type: number
+                                x1:
+                                  type: number
+                                x2:
+                                  type: number
+                              type: object
+                            name:
+                              type: string
+                          type: object
+                        type: array
                       url:
                         type: string
                     type: object
@@ -56,6 +76,8 @@ spec:
                 type: object
               meta:
                 properties:
+                  mode:
+                    type: string
                   object_config:
                     additionalProperties:
                       properties:
