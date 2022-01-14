@@ -1,0 +1,128 @@
+livingroom:
+  activity:
+    sleep:
+      brightness:
+        min: 0.0
+        max: 0.3
+      p: 0.1
+    watch-tv:
+      brightness:
+        min: 0.2
+        max: 0.8
+      p: 0.2
+    work:
+      brightness:
+        min: 0.7
+        max: 1.0
+      p: 0.7
+  transition:
+    morning:
+      kitchen:
+        p: 0.02
+      bedroom:
+        p: 0.02
+      stay:
+        p: 0.96
+    afternoon:
+      kitchen:
+        p: 0.5
+      bedroom:
+        p: 0.4
+      stay:
+        p: 0.1
+    evening:
+      kitchen:
+        p: 0.0
+      bedroom:
+        p: 1.0
+      stay:
+        p: 0.0
+    night:
+      kitchen:
+        p: 0.2
+      bedroom:
+        p: 0.8
+      stay:
+        p: 0.0
+bedroom:
+  activity:
+    read:
+      brightness:
+        min: 0.6
+        max: 1.0
+      p: 0.2
+    sleep:
+      brightness:
+        min: 0.0
+        max: 0.0
+      p: 0.8
+  transition:
+    morning:
+      livingroom:
+        p: 0.5
+      kitchen:
+        p: 0.4
+      stay:
+        p: 0.1
+    afternoon:
+      livingroom:
+        p: 0.8
+      kitchen:
+        p: 0.1
+      stay:
+        p: 0.1
+    evening:
+      livingroom:
+        p: 0.2
+      kitchen:
+        p: 0.2
+      stay:
+        p: 0.6
+    night:
+      livingroom:
+        p: 0.0
+      kitchen:
+        p: 0.1
+      stay:
+        p: 0.9
+kitchen:
+  activity:
+    cook:
+      brightness:
+        min: 0.6
+        max: 1.0
+      p: 0.8
+    wash:
+      brightness:
+        min: 0.6
+        max: 1.0
+      p: 0.2
+  transition:
+    morning:
+      livingroom:
+        p: 0.6
+      bedroom:
+        p: 0.1
+      stay:
+        p: 0.3
+    afternoon:
+      livingroom:
+        p: 0.8
+      bedroom:
+        p: 0.1
+      stay:
+        p: 0.1
+    evening:
+      livingroom:
+        p: 0.4
+      bedroom:
+        p: 0.4
+      stay:
+        p: 0.2
+    night:
+      livingroom:
+        p: 0.0
+      bedroom:
+        p: 1.0
+      stay:
+        p: 0.0

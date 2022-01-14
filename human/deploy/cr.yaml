@@ -1,0 +1,13 @@
+apiVersion: smarthome.mock.digi.dev/v1
+kind: Human
+metadata:
+  name: {{ .Values.name }}
+spec:
+  control:
+    cur_time:
+      intent: -1
+    cur_gen:
+      intent: -1
+#  meta:
+#    initial_room: "bedroom"
+#    seed: 42

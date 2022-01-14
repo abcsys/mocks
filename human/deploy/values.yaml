@@ -1,0 +1,10 @@
+group: smarthome.mock.digi.dev
+image: silveryfu/human.v1.smarthome.mock.digi.dev:latest
+imagepull: Always
+mounter: true
+name: human
+namespace: default
+plural: humans
+pool_provider: zed
+stric_mount: false
+version: v1

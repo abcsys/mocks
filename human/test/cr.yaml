@@ -1,0 +1,8 @@
+apiVersion: smarthome.mock.digi.dev/v1
+kind: Human
+metadata:
+  name: human-test
+spec:
+  control:
+    cur_time:
+      intent: 0

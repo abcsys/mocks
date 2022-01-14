@@ -1,0 +1,34 @@
+group: smarthome.mock.digi.dev
+version: v1
+kind: Human
+#meta:
+#  activity:
+#    openapi:
+#      additionalProperties:
+#        properties:
+#          brightness:
+#            properties:
+#              min:
+#                type: number
+#              max:
+#                type: number
+#            type: number
+#          p:
+#            type: number
+#        type: object
+#      type: object
+#  transition:
+#    openapi:
+#      additionalProperties:
+#        additionalProperties:
+#          properties:
+#            p:
+#              type: number
+#          type: object
+#        type: object
+#      type: object
+control:
+  cur_time: number
+  cur_gen: number
+mount:
+  smarthome.mock.digi.dev/v1/rooms: object
