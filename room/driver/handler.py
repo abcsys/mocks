@@ -242,14 +242,13 @@ def load():
         record.update({"num_lamp": 0})
 
     objects = util.get(model, f"obs.objects", None)
+    num_human, humans = 0, list()
     if objects is not None:
-        num_human, humans = 0, list()
         for o in objects:
-            if "human" in o:
+            if o.get("class", None) == "human":
                 num_human += 1
-                humans.append(o["human"].get("name", None))
-        record.update({"num_human": num_human, "human": humans})
-
+                humans.append(o.get("name", None))
+    record.update({"num_human": num_human, "human": humans})
     digi.pool.load([record])
 
 
