@@ -76,6 +76,9 @@ lamp_converters = {
     },
 }
 
+@on.mount
+def do_back_prop(back_prop):
+    digi.logger.info(f"back_prop: {back_prop}")
 
 @on.control
 @on.mount
