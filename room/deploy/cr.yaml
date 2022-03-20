@@ -9,4 +9,12 @@ spec:
     mode:
       intent: work
   meta:
-    load_interval: 1
+    report_interval: 1
+  # data router settings
+  ingress:
+    device_power:
+      sources: [l1, l2, l3]
+      dataflow: "head | watt"
+  egress:
+    avg_power:
+      dataflow: "not model | avg(watt)"

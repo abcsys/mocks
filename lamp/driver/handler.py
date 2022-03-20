@@ -4,7 +4,7 @@ import digi.util as util
 
 
 @on.control
-def do_brightness(sv):
+def do_control(sv):
     p, b = sv.get("power", {}), sv.get("brightness", {})
     if "intent" in p:
         p["status"] = p["intent"]
@@ -16,22 +16,27 @@ def do_brightness(sv):
             b["status"] = 0
 
 
-def load():
+def report():
     model = digi.rc.view()
+    power, brightness = util.get(model, "control.power.status"), \
+                        util.get(model, "control.brightness.status")
+    wattage = util.get(model, "meta.wattage", -1)
+    watt = 0 if power != "on" else wattage
     digi.pool.load(
         [{
-            "power": util.deep_get(model, "control.power.status"),
-            "brightness": util.deep_get(model, "control.brightness.status"),
+            "power": power,
+            "brightness": brightness,
+            "watt": watt,
         }]
     )
 
 
-loader = util.Loader(load_fn=load)
+loader = util.Loader(load_fn=report)
 
 
 @on.meta
 def do_meta(meta):
-    i = meta.get("load_interval", -1)
+    i = meta.get("report_interval", -1)
     if i < 0:
         digi.logger.info("Stop loader")
         loader.stop()

@@ -47,10 +47,32 @@ spec:
                         type: string
                     type: object
                 type: object
+              egress:
+                properties:
+                  avg_power:
+                    properties:
+                      dataflow:
+                        type: string
+                    type: object
+                type: object
+              ingress:
+                properties:
+                  device_power:
+                    properties:
+                      combine_dataflow:
+                        type: string
+                      dataflow:
+                        type: string
+                      kind:
+                        type: string
+                      sources:
+                        items:
+                          type: string
+                        type: array
+                    type: object
+                type: object
               meta:
                 properties:
-                  load_interval:
-                    type: number
                   modeConfig:
                     additionalProperties:
                       properties:
@@ -60,6 +82,8 @@ spec:
                           type: string
                       type: object
                     type: object
+                  report_interval:
+                    type: number
                 type: object
               mount:
                 properties:
@@ -89,9 +113,19 @@ spec:
                                       type: string
                                   type: object
                               type: object
+                            egress:
+                              properties:
+                                watt:
+                                  properties:
+                                    dataflow:
+                                      type: string
+                                  type: object
+                              type: object
                             meta:
                               properties:
-                                load_interval:
+                                report_interval:
+                                  type: number
+                                wattage:
                                   type: number
                               type: object
                           type: object

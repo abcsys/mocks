@@ -5,4 +5,7 @@ control:
   power: string
   brightness: number
 meta:
-  load_interval: number
+  wattage: number
+  report_interval: number
+egress:
+  watt: object

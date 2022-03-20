@@ -230,7 +230,7 @@ def _set_bright(ds, b):
                     _lc(b))
 
 
-def load():
+def report():
     model = digi.rc.view()
 
     record = {
@@ -255,12 +255,12 @@ def load():
     digi.pool.load([record])
 
 
-loader = util.Loader(load_fn=load)
+loader = util.Loader(load_fn=report)
 
 
 @on.meta
 def do_meta(meta):
-    i = meta.get("load_interval", -1)
+    i = meta.get("report_interval", -1)
     if i < 0:
         digi.logger.info("Stop loader")
         loader.stop()

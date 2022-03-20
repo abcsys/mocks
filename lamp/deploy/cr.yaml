@@ -4,9 +4,15 @@ metadata:
   name: {{ .Values.name }}
 spec:
   control:
-    brightness: 
-      intent: 0.2
-    power: 
+    # default settings
+    power:
       intent: "off"
+    brightness:
+      intent: 0.2
   meta:
-    load_interval: 1
+    wattage: 12
+    report_interval: 1
+  # data router configs
+  egress:
+    watt:
+      dataflow: "not model | cut watt | head"
