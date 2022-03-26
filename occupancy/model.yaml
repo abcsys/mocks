@@ -1,0 +1,7 @@
+group: mock.digi.dev
+version: v1
+kind: Occupancy
+obs:
+  motion_detected: boolean
+  dbm: string
+  supply_voltage: string

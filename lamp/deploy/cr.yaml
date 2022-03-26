@@ -11,8 +11,10 @@ spec:
       intent: 0.2
   meta:
     wattage: 12
-    report_interval: 1
+    report_interval: -1
   # data router configs
   egress:
-    watt:
-      dataflow: "not model | cut watt | head"
+    data:
+      flow: "head"
+    energy:
+      flow: "cut watt,ts | head"

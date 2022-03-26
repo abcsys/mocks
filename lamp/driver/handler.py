@@ -6,6 +6,7 @@ import digi.util as util
 @on.control
 def do_control(sv):
     p, b = sv.get("power", {}), sv.get("brightness", {})
+    p_old_status, b_old_status = p.get("status"), b.get("status")
     if "intent" in p:
         p["status"] = p["intent"]
 
@@ -15,13 +16,18 @@ def do_control(sv):
         else:
             b["status"] = 0
 
+    # report only when status has change
+    if p.get("status") != p_old_status \
+            or b.get("status") != b_old_status:
+        report()
+
 
 def report():
     model = digi.rc.view()
     power, brightness = util.get(model, "control.power.status"), \
                         util.get(model, "control.brightness.status")
-    wattage = util.get(model, "meta.wattage", -1)
-    watt = 0 if power != "on" else wattage
+    wattage = util.get(model, "meta.wattage")
+    watt = 0 if power != "on" or wattage is None else round(wattage * brightness, 1)
     digi.pool.load(
         [{
             "power": power,

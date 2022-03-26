@@ -8,4 +8,5 @@ meta:
   wattage: number
   report_interval: number
 egress:
-  watt: object
+  data: object
+  energy: object

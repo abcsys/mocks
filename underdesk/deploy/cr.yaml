@@ -1,0 +1,12 @@
+apiVersion: mock.digi.dev/v1
+kind: Underdesk
+metadata:
+  name: {{ .Values.name }}
+spec:
+  obs:
+    motion_detected: false
+    dbm: "-80"
+    supply_voltage: 3.3V
+  egress:
+    detected:
+      dataflow: ""

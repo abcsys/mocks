@@ -1,0 +1,9 @@
+group: mock.digi.dev
+version: v1
+kind: Underdesk
+obs:
+  motion_detected: boolean
+  dbm: string
+  supply_voltage: string
+egress:
+  detected: object

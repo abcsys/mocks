@@ -85,12 +85,27 @@ spec:
                               properties:
                                 device_power:
                                   properties:
-                                    combine_dataflow:
-                                      type: string
                                     dataflow:
                                       type: string
-                                    kind:
+                                    dataflow_combine:
                                       type: string
+                                    source:
+                                      items:
+                                        properties:
+                                          egress:
+                                            type: string
+                                          group:
+                                            type: string
+                                          kind:
+                                            type: string
+                                          name:
+                                            type: string
+                                          namespace:
+                                            type: string
+                                          version:
+                                            type: string
+                                        type: object
+                                      type: array
                                     sources:
                                       items:
                                         type: string
@@ -141,7 +156,12 @@ spec:
                                             type: object
                                           egress:
                                             properties:
-                                              watt:
+                                              data:
+                                                properties:
+                                                  dataflow:
+                                                    type: string
+                                                type: object
+                                              energy:
                                                 properties:
                                                   dataflow:
                                                     type: string

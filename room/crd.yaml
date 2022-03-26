@@ -51,7 +51,7 @@ spec:
                 properties:
                   avg_power:
                     properties:
-                      dataflow:
+                      flow:
                         type: string
                     type: object
                 type: object
@@ -59,12 +59,27 @@ spec:
                 properties:
                   device_power:
                     properties:
-                      combine_dataflow:
+                      flow:
                         type: string
-                      dataflow:
+                      flow_agg:
                         type: string
-                      kind:
-                        type: string
+                      source:
+                        items:
+                          properties:
+                            egress:
+                              type: string
+                            group:
+                              type: string
+                            kind:
+                              type: string
+                            name:
+                              type: string
+                            namespace:
+                              type: string
+                            version:
+                              type: string
+                          type: object
+                        type: array
                       sources:
                         items:
                           type: string
@@ -115,9 +130,14 @@ spec:
                               type: object
                             egress:
                               properties:
-                                watt:
+                                data:
                                   properties:
-                                    dataflow:
+                                    flow:
+                                      type: string
+                                  type: object
+                                energy:
+                                  properties:
+                                    flow:
                                       type: string
                                   type: object
                               type: object
@@ -140,85 +160,6 @@ spec:
                           type: number
                         mode:
                           type: string
-                        spec:
-                          properties:
-                            data:
-                              properties:
-                                input:
-                                  properties:
-                                    objects:
-                                      items:
-                                        properties:
-                                          class:
-                                            type: string
-                                          location:
-                                            properties:
-                                              h:
-                                                type: number
-                                              w:
-                                                type: number
-                                              x1:
-                                                type: number
-                                              x2:
-                                                type: number
-                                            type: object
-                                          name:
-                                            type: string
-                                        type: object
-                                      type: array
-                                    url:
-                                      type: string
-                                  type: object
-                                output:
-                                  properties:
-                                    objects:
-                                      items:
-                                        properties:
-                                          class:
-                                            type: string
-                                          location:
-                                            properties:
-                                              h:
-                                                type: number
-                                              w:
-                                                type: number
-                                              x1:
-                                                type: number
-                                              x2:
-                                                type: number
-                                            type: object
-                                          name:
-                                            type: string
-                                        type: object
-                                      type: array
-                                  type: object
-                              type: object
-                            meta:
-                              properties:
-                                mode:
-                                  type: string
-                                object_config:
-                                  additionalProperties:
-                                    properties:
-                                      class:
-                                        type: string
-                                      enter_prob:
-                                        type: number
-                                      leave_prob:
-                                        type: number
-                                    type: object
-                                  type: object
-                                pause:
-                                  type: boolean
-                                refresh_interval:
-                                  type: number
-                              type: object
-                            obs:
-                              properties:
-                                reason:
-                                  type: string
-                              type: object
-                          type: object
                         status:
                           type: string
                       type: object

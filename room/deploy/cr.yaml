@@ -8,13 +8,12 @@ spec:
       intent: 1
     mode:
       intent: work
-  meta:
-    report_interval: 1
   # data router settings
   ingress:
     device_power:
-      sources: [l1, l2, l3]
-      dataflow: "head | watt"
+      sources: [ kind:lamp@energy ]
+      flow: "head"
+      flow_agg: "select sum(watt) as watt"
   egress:
     avg_power:
-      dataflow: "not model | avg(watt)"
+      flow: "select avg(watt) as watt | put ts:=now()"

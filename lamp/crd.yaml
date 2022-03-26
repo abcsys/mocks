@@ -42,9 +42,14 @@ spec:
                 type: object
               egress:
                 properties:
-                  watt:
+                  data:
                     properties:
-                      dataflow:
+                      flow:
+                        type: string
+                    type: object
+                  energy:
+                    properties:
+                      flow:
                         type: string
                     type: object
                 type: object
