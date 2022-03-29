@@ -14,7 +14,5 @@ spec:
     report_interval: -1
   # data router configs
   egress:
-    data:
-      flow: "head"
     energy:
-      flow: "cut watt,ts | head"
+      flow: "cut watt,event_ts"

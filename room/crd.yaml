@@ -59,6 +59,8 @@ spec:
                 properties:
                   device_power:
                     properties:
+                      eoio:
+                        type: boolean
                       flow:
                         type: string
                       flow_agg:
@@ -160,6 +162,85 @@ spec:
                           type: number
                         mode:
                           type: string
+                        spec:
+                          properties:
+                            data:
+                              properties:
+                                input:
+                                  properties:
+                                    objects:
+                                      items:
+                                        properties:
+                                          class:
+                                            type: string
+                                          location:
+                                            properties:
+                                              h:
+                                                type: number
+                                              w:
+                                                type: number
+                                              x1:
+                                                type: number
+                                              x2:
+                                                type: number
+                                            type: object
+                                          name:
+                                            type: string
+                                        type: object
+                                      type: array
+                                    url:
+                                      type: string
+                                  type: object
+                                output:
+                                  properties:
+                                    objects:
+                                      items:
+                                        properties:
+                                          class:
+                                            type: string
+                                          location:
+                                            properties:
+                                              h:
+                                                type: number
+                                              w:
+                                                type: number
+                                              x1:
+                                                type: number
+                                              x2:
+                                                type: number
+                                            type: object
+                                          name:
+                                            type: string
+                                        type: object
+                                      type: array
+                                  type: object
+                              type: object
+                            meta:
+                              properties:
+                                mode:
+                                  type: string
+                                object_config:
+                                  additionalProperties:
+                                    properties:
+                                      class:
+                                        type: string
+                                      enter_prob:
+                                        type: number
+                                      leave_prob:
+                                        type: number
+                                    type: object
+                                  type: object
+                                pause:
+                                  type: boolean
+                                refresh_interval:
+                                  type: number
+                              type: object
+                            obs:
+                              properties:
+                                reason:
+                                  type: string
+                              type: object
+                          type: object
                         status:
                           type: string
                       type: object

@@ -77,7 +77,7 @@ spec:
                               properties:
                                 avg_power:
                                   properties:
-                                    dataflow:
+                                    flow:
                                       type: string
                                   type: object
                               type: object
@@ -85,9 +85,11 @@ spec:
                               properties:
                                 device_power:
                                   properties:
-                                    dataflow:
+                                    eoio:
+                                      type: boolean
+                                    flow:
                                       type: string
-                                    dataflow_combine:
+                                    flow_agg:
                                       type: string
                                     source:
                                       items:
@@ -158,12 +160,12 @@ spec:
                                             properties:
                                               data:
                                                 properties:
-                                                  dataflow:
+                                                  flow:
                                                     type: string
                                                 type: object
                                               energy:
                                                 properties:
-                                                  dataflow:
+                                                  flow:
                                                     type: string
                                                 type: object
                                             type: object

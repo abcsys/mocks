@@ -12,8 +12,9 @@ spec:
   ingress:
     device_power:
       sources: [ kind:lamp@energy ]
-      flow: "head"
+      flow: "sort -r event_ts | head"
       flow_agg: "select sum(watt) as watt"
+      eoio: false
   egress:
     avg_power:
-      flow: "select avg(watt) as watt | put ts:=now()"
+      flow: "select avg(watt) as watt"

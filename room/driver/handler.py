@@ -218,7 +218,7 @@ def do_brightness(parent, mounts):
     if num_active_lamp < 1:
         return
 
-    brightness_div = brightness / num_active_lamp
+    brightness_div = round(brightness / num_active_lamp, 2)
     _set_bright(devices, brightness_div)
 
 
