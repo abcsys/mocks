@@ -1,0 +1,13 @@
+apiVersion: mock.digi.dev/v1
+kind: Building
+metadata:
+  name: {{ .Values.name }}
+spec:
+  ingress:
+    power:
+      sources: [ kind:room@avg_power ]
+      flow: ""
+      patch_source: true
+  egress:
+    power_rank:
+      flow: "watt:=max(watt),event_ts:=max(event_ts) by from"

@@ -2,4 +2,10 @@ apiVersion: mock.digi.dev/v1
 kind: Occupancy
 metadata:
   name: {{ .Values.name }}
-spec: {}
+spec:
+spec:
+  meta:
+    report_interval: 5 # avg
+  egress:
+    detected:
+      flow: ""

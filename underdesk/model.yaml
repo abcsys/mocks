@@ -1,6 +1,8 @@
 group: mock.digi.dev
 version: v1
 kind: Underdesk
+meta:
+  report_interval: number
 obs:
   motion_detected: boolean
   dbm: string

@@ -1,3 +1,14 @@
 group: mock.digi.dev
 version: v1
 kind: Building
+ingress:
+  power: object
+  occupancy: object
+egress:
+  avg_power: object
+  avg_occupancy: object
+  power_rank: object
+mount:
+  mock.digi.dev/v1/rooms: object
+  mock.digi.dev/v1/groups: object
+  mock.digi.dev/v1/floors: object

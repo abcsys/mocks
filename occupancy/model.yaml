@@ -1,7 +1,11 @@
 group: mock.digi.dev
 version: v1
 kind: Occupancy
+meta:
+  report_interval: number
 obs:
   motion_detected: boolean
   dbm: string
   supply_voltage: string
+egress:
+  detected: object

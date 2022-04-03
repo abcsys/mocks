@@ -44,8 +44,16 @@ obs:
 reflex: object
 ingress:
   device_power: object
+  occupancy: object
+  desk_occupancy: object
 egress:
   avg_power: object
+  avg_occupancy: object
+  avg_desk_occupancy: object
 mount:
   mock.digi.dev/v1/lamps: object
   mock.digi.dev/v1/scenes: object
+  mock.digi.dev/v1/underdesks: object
+  mock.digi.dev/v1/occupancies: object
+  mock.digi.dev/v1/densities: object
+  mock.digi.dev/v1/appliances: object

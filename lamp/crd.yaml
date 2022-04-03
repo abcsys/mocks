@@ -44,11 +44,15 @@ spec:
                 properties:
                   data:
                     properties:
+                      eoio:
+                        type: boolean
                       flow:
                         type: string
                     type: object
                   energy:
                     properties:
+                      eoio:
+                        type: boolean
                       flow:
                         type: string
                     type: object

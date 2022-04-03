@@ -3,10 +3,8 @@ kind: Underdesk
 metadata:
   name: {{ .Values.name }}
 spec:
-  obs:
-    motion_detected: false
-    dbm: "-80"
-    supply_voltage: 3.3V
+  meta:
+    report_interval: 5 # avg
   egress:
     detected:
-      dataflow: ""
+      flow: ""

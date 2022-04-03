@@ -11,10 +11,13 @@ spec:
   # data router settings
   ingress:
     device_power:
-      sources: [ kind:lamp@energy ]
+      sources: [ kind:any@energy ]
       flow: "sort -r event_ts | head"
       flow_agg: "select sum(watt) as watt"
       eoio: false
+    occupancy:
+      sources: [ kind:occupancy@detected ]
+      flow: ""
   egress:
     avg_power:
       flow: "select avg(watt) as watt"

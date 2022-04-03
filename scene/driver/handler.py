@@ -95,7 +95,8 @@ def happen(prob):
 
 
 @on.meta
-def init(model):
+def init(model, diff):
+    digi.logger.info(f"DEBUG {diff}")
     global scene
     if scene is not None:
         scene.stop()
