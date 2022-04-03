@@ -10,7 +10,7 @@ spec:
       intent: work
   # data router settings
   ingress:
-    device_power:
+    device_energy:
       sources: [ kind:any@energy ]
       flow: "sort -r event_ts | head"
       flow_agg: "select sum(watt) as watt"
@@ -19,5 +19,5 @@ spec:
       sources: [ kind:occupancy@detected ]
       flow: ""
   egress:
-    avg_power:
-      flow: "select avg(watt) as watt"
+    energy:
+      flow: "watt | cut watt,event_ts"

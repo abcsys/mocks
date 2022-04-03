@@ -4,10 +4,12 @@ metadata:
   name: {{ .Values.name }}
 spec:
   ingress:
-    power:
-      sources: [ kind:room@avg_power ]
-      flow: ""
+    energy:
+      sources: [ kind:any@energy]
+      flow: "sort -r event_ts | head"
+      flow_agg: "select sum(watt) as watt"
+      eoio: false
       patch_source: true
   egress:
-    power_rank:
-      flow: "watt:=max(watt),event_ts:=max(event_ts) by from"
+    energy:
+      flow: "watt | cut watt,event_ts"

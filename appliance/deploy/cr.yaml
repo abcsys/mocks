@@ -11,4 +11,4 @@ spec:
     unit: watt
   egress:
     energy:
-      flow: "cut watt,event_ts"
+      flow: "watt | cut watt,event_ts"

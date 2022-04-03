@@ -5,5 +5,5 @@ kind: Campus
 mounter: true
 name: campus
 namespace: default
-plural: campus
+plural: campuses
 version: v1

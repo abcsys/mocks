@@ -2,10 +2,11 @@ group: mock.digi.dev
 version: v1
 kind: Floor
 ingress:
-  power: object
+  energy: object
   occupancy: object
 egress:
-  avg_power: object
-  avg_occupancy: object
+  energy: object
+  energy_rank: object
+  occupancy: object
 mount:
   mock.digi.dev/v1/rooms: object

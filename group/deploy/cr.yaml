@@ -2,4 +2,12 @@ apiVersion: mock.digi.dev/v1
 kind: Group
 metadata:
   name: {{ .Values.name }}
-spec: {}
+spec:
+  ingress:
+    energy:
+      sources: [ kind:room@energy]
+      flow: ""
+      patch_source: true
+  egress:
+    energy:
+      flow: "watt | cut watt,event_ts"

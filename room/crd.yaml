@@ -49,21 +49,28 @@ spec:
                 type: object
               egress:
                 properties:
-                  avg_desk_occupancy:
+                  desk_occupancy:
                     properties:
                       eoio:
                         type: boolean
                       flow:
                         type: string
                     type: object
-                  avg_occupancy:
+                  energy:
                     properties:
                       eoio:
                         type: boolean
                       flow:
                         type: string
                     type: object
-                  avg_power:
+                  energy_rank:
+                    properties:
+                      eoio:
+                        type: boolean
+                      flow:
+                        type: string
+                    type: object
+                  occupancy:
                     properties:
                       eoio:
                         type: boolean
@@ -105,7 +112,7 @@ spec:
                           type: string
                         type: array
                     type: object
-                  device_power:
+                  device_energy:
                     properties:
                       eoio:
                         type: boolean
