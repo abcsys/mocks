@@ -8,6 +8,8 @@ spec:
       intent: 1
     mode:
       intent: work
+  meta:
+    num_desk: 5
   # data router settings
   ingress:
     device_energy:
@@ -17,7 +19,7 @@ spec:
       eoio: false
     occupancy:
       sources: [ kind:occupancy@detected ]
-      flow: ""
+      flow: "detected "
   egress:
     energy:
       flow: "watt | cut watt,event_ts"

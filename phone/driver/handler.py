@@ -1,7 +1,8 @@
 import digi
+from digi import on
 
 
-@digi.on.model
+@on.mount
 def h(model):
     ...
 

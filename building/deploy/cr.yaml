@@ -5,7 +5,7 @@ metadata:
 spec:
   ingress:
     energy:
-      sources: [ kind:any@energy]
+      sources: [ kind:any@energy ]
       flow: "sort -r event_ts | head"
       flow_agg: "select sum(watt) as watt"
       eoio: false

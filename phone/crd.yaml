@@ -25,7 +25,7 @@ spec:
             properties:
               egress:
                 properties:
-                  avg_footprint:
+                  footprint:
                     properties:
                       eoio:
                         type: boolean
@@ -43,6 +43,8 @@ spec:
                         type: string
                       flow_agg:
                         type: string
+                      patch_source:
+                        type: boolean
                       source:
                         items:
                           properties:
@@ -343,6 +345,8 @@ spec:
                                         type: string
                                     type: object
                                   type: object
+                                num_desk:
+                                  type: number
                                 report_interval:
                                   type: number
                               type: object

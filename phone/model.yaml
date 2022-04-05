@@ -4,7 +4,7 @@ kind: Phone
 ingress:
   footprint: object
 egress:
-  avg_footprint: object
+  footprint: object
 mount:
   mock.digi.dev/v1/lamps: object
   mock.digi.dev/v1/appliances: object

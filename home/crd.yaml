@@ -75,21 +75,28 @@ spec:
                               type: object
                             egress:
                               properties:
-                                avg_desk_occupancy:
+                                desk_occupancy:
                                   properties:
                                     eoio:
                                       type: boolean
                                     flow:
                                       type: string
                                   type: object
-                                avg_occupancy:
+                                energy:
                                   properties:
                                     eoio:
                                       type: boolean
                                     flow:
                                       type: string
                                   type: object
-                                avg_power:
+                                energy_rank:
+                                  properties:
+                                    eoio:
+                                      type: boolean
+                                    flow:
+                                      type: string
+                                  type: object
+                                occupancy:
                                   properties:
                                     eoio:
                                       type: boolean
@@ -107,6 +114,8 @@ spec:
                                       type: string
                                     flow_agg:
                                       type: string
+                                    patch_source:
+                                      type: boolean
                                     source:
                                       items:
                                         properties:
@@ -129,7 +138,7 @@ spec:
                                         type: string
                                       type: array
                                   type: object
-                                device_power:
+                                device_energy:
                                   properties:
                                     eoio:
                                       type: boolean
@@ -137,6 +146,8 @@ spec:
                                       type: string
                                     flow_agg:
                                       type: string
+                                    patch_source:
+                                      type: boolean
                                     source:
                                       items:
                                         properties:
@@ -167,6 +178,8 @@ spec:
                                       type: string
                                     flow_agg:
                                       type: string
+                                    patch_source:
+                                      type: boolean
                                     source:
                                       items:
                                         properties:
@@ -201,6 +214,8 @@ spec:
                                         type: string
                                     type: object
                                   type: object
+                                num_desk:
+                                  type: number
                                 report_interval:
                                   type: number
                               type: object
@@ -323,11 +338,15 @@ spec:
                                             properties:
                                               data:
                                                 properties:
+                                                  eoio:
+                                                    type: boolean
                                                   flow:
                                                     type: string
                                                 type: object
                                               energy:
                                                 properties:
+                                                  eoio:
+                                                    type: boolean
                                                   flow:
                                                     type: string
                                                 type: object

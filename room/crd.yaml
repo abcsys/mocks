@@ -188,6 +188,8 @@ spec:
                           type: string
                       type: object
                     type: object
+                  num_desk:
+                    type: number
                   report_interval:
                     type: number
                 type: object

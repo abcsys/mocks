@@ -76,9 +76,11 @@ lamp_converters = {
     },
 }
 
+
 @on.mount
 def do_back_prop(back_prop):
     digi.logger.info(f"back_prop: {back_prop}")
+
 
 @on.control
 @on.mount
@@ -230,6 +232,11 @@ def _set_bright(ds, b):
                     _lc(b))
 
 
+@on.model
+def h(model):
+    report()
+
+
 def report():
     model = digi.rc.view()
 
@@ -238,7 +245,7 @@ def report():
     }
 
     mounts = model.get("mount", {})
-    lamps = mounts.get(gvr_lamp, None)
+    lamps = mounts.get(gvr_lamp)
     if lamps is not None:
         record.update({"num_lamp": len(lamps)})
     else:
@@ -251,7 +258,12 @@ def report():
             if o.get("class", None) == "human":
                 num_human += 1
                 humans.append(o.get("name", None))
-    record.update({"num_human": num_human, "human": humans})
+    record.update(
+        {
+            "num_human": num_human,
+            "human": humans,
+            "num_desk": util.get(model, "meta.num_desk"),
+        })
     digi.pool.load([record])
 
 

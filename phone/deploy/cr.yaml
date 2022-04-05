@@ -2,4 +2,13 @@ apiVersion: mock.digi.dev/v1
 kind: Phone
 metadata:
   name: {{ .Values.name }}
-spec: {}
+spec:
+  ingress:
+    footprint:
+      source: [ kind:any@energy ]
+      flow: "sort -r event_ts | head "
+      flow_agg: "select sum(watt) as watt"
+      eoio: false
+  egress:
+    footprint:
+      flow: "avg(watt) by every(1h) | sum(avg * 3600)"
