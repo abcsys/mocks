@@ -8,18 +8,17 @@ spec:
       intent: 1
     mode:
       intent: work
-  meta:
-    num_desk: 5
-  # data router settings
   ingress:
     device_energy:
       sources: [ kind:any@energy ]
       flow: "sort -r event_ts | head"
       flow_agg: "select sum(watt) as watt"
       eoio: false
-    occupancy:
-      sources: [ kind:occupancy@detected ]
-      flow: "detected "
   egress:
     energy:
       flow: "watt | cut watt,event_ts"
+    occupancy:
+      flow: |-
+        desk_occupancy |
+        cut desk_occupancy,event_ts |
+        rename occupancy := desk_occupancy

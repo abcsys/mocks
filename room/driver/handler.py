@@ -28,6 +28,7 @@ Mounts:
 
 gvr_lamp = "mock.digi.dev/v1/lamps"
 gvr_scene = "mock.digi.dev/v1/scenes"
+gvr_underdesk = "mock.digi.dev/v1/underdesks"
 
 mode_config = {
     "work": {
@@ -239,31 +240,40 @@ def h(model):
 
 def report():
     model = digi.rc.view()
-
-    record = {
-        "brightness": util.get(model, "control.brightness.status"),
-    }
-
     mounts = model.get("mount", {})
+
+    # room
+    record = {"brightness": util.get(model, "control.brightness.status")}
+
+    # lamp
     lamps = mounts.get(gvr_lamp)
     if lamps is not None:
         record.update({"num_lamp": len(lamps)})
     else:
         record.update({"num_lamp": 0})
 
-    objects = util.get(model, f"obs.objects", None)
+    # objects
     num_human, humans = 0, list()
-    if objects is not None:
-        for o in objects:
-            if o.get("class", None) == "human":
-                num_human += 1
-                humans.append(o.get("name", None))
-    record.update(
-        {
-            "num_human": num_human,
-            "human": humans,
-            "num_desk": util.get(model, "meta.num_desk"),
-        })
+    objects = util.get(model, f"obs.objects")
+    objects = objects if objects else []
+    for o in objects:
+        if o.get("class", None) == "human":
+            num_human += 1
+            humans.append(o.get("name", None))
+    record.update({
+        "num_human": num_human,
+        "human": humans,
+    })
+
+    # occupancy
+    # XXX assume each desk has an underdesk
+    underdesks = mounts.get(gvr_underdesk, {})
+    num_active_desk = sum(util.get(ud, "spec.obs.motion_detected", False)
+                          for _, ud in underdesks.items())
+    desk_occupancy = None if underdesks is None else \
+        num_active_desk / len(underdesks)
+    record.update({"desk_occupancy": desk_occupancy})
+
     digi.pool.load([record])
 
 

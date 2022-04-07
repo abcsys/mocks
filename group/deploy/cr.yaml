@@ -5,9 +5,15 @@ metadata:
 spec:
   ingress:
     energy:
-      sources: [ kind:room@energy]
+      sources: [ kind:room@energy ]
       flow: ""
       patch_source: true
+    occupancy:
+      sources: [ kind:room@occupancy ]
+      flow: "TBD"
   egress:
     energy:
       flow: "watt | cut watt,event_ts"
+    occupancy:
+      flow: "occupancy | cut occupancy,event_ts"
+    # Correlation

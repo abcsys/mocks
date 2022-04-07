@@ -6,10 +6,15 @@ spec:
   ingress:
     energy:
       sources: [ kind:any@energy ]
-      flow: "sort -r event_ts | head"
-      flow_agg: "select sum(watt) as watt"
-      eoio: false
+      flow: ""
+      flow_agg: ""
       patch_source: true
+    occupancy:
+      sources: [ kind:room@occupancy ]
+      flow: "sort -r event_ts | head"
+      eoio: false
   egress:
     energy:
       flow: "watt | cut watt,event_ts"
+    occupancy:
+      pause: true

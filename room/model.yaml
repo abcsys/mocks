@@ -13,7 +13,6 @@ meta:
         type: object
       type: object
   report_interval: number
-  num_desk: number
 control:
   brightness: number
   mode: string

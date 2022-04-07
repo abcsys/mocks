@@ -27,6 +27,8 @@ spec:
                 properties:
                   detected:
                     properties:
+                      eoio:
+                        type: boolean
                       flow:
                         type: string
                     type: object
