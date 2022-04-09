@@ -129,6 +129,40 @@ spec:
                           type: string
                         type: array
                     type: object
+                  room_occupancy:
+                    properties:
+                      eoio:
+                        type: boolean
+                      flow:
+                        type: string
+                      flow_agg:
+                        type: string
+                      patch_source:
+                        type: boolean
+                      pause:
+                        type: boolean
+                      source:
+                        items:
+                          properties:
+                            egress:
+                              type: string
+                            group:
+                              type: string
+                            kind:
+                              type: string
+                            name:
+                              type: string
+                            namespace:
+                              type: string
+                            version:
+                              type: string
+                          type: object
+                        type: array
+                      sources:
+                        items:
+                          type: string
+                        type: array
+                    type: object
                 type: object
               mount:
                 properties:

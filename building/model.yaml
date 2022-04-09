@@ -3,6 +3,7 @@ version: v1
 kind: Building
 ingress:
   energy: object
+  room_occupancy: object
   occupancy: object
 egress:
   energy: object
