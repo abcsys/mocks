@@ -270,7 +270,7 @@ def report():
     underdesks = mounts.get(gvr_underdesk, {})
     num_active_desk = sum(util.get(ud, "spec.obs.motion_detected", False)
                           for _, ud in underdesks.items())
-    desk_occupancy = None if underdesks is None else \
+    desk_occupancy = None if underdesks is None or len(underdesks) == 0 else \
         num_active_desk / len(underdesks)
     record.update({"desk_occupancy": desk_occupancy})
 

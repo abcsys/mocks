@@ -6,14 +6,14 @@ spec:
   ingress:
     energy:
       sources: [ kind:room@energy ]
-      flow: ""
       patch_source: true
     occupancy:
       sources: [ kind:room@occupancy ]
-      flow: "TBD"
+      flow: "sort -r event_ts | head"
+      eoio: false
   egress:
     energy:
       flow: "watt | cut watt,event_ts"
     occupancy:
-      flow: "occupancy | cut occupancy,event_ts"
+      pause: true
     # Correlation

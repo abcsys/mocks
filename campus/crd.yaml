@@ -373,31 +373,47 @@ spec:
                                                           properties:
                                                             desk_occupancy:
                                                               properties:
+                                                                driver_managed:
+                                                                  type: boolean
                                                                 eoio:
                                                                   type: boolean
                                                                 flow:
                                                                   type: string
+                                                                pause:
+                                                                  type: boolean
                                                               type: object
                                                             energy:
                                                               properties:
+                                                                driver_managed:
+                                                                  type: boolean
                                                                 eoio:
                                                                   type: boolean
                                                                 flow:
                                                                   type: string
+                                                                pause:
+                                                                  type: boolean
                                                               type: object
                                                             energy_rank:
                                                               properties:
+                                                                driver_managed:
+                                                                  type: boolean
                                                                 eoio:
                                                                   type: boolean
                                                                 flow:
                                                                   type: string
+                                                                pause:
+                                                                  type: boolean
                                                               type: object
                                                             occupancy:
                                                               properties:
+                                                                driver_managed:
+                                                                  type: boolean
                                                                 eoio:
                                                                   type: boolean
                                                                 flow:
                                                                   type: string
+                                                                pause:
+                                                                  type: boolean
                                                               type: object
                                                           type: object
                                                         ingress:
@@ -411,6 +427,8 @@ spec:
                                                                 flow_agg:
                                                                   type: string
                                                                 patch_source:
+                                                                  type: boolean
+                                                                pause:
                                                                   type: boolean
                                                                 source:
                                                                   items:
@@ -444,6 +462,8 @@ spec:
                                                                   type: string
                                                                 patch_source:
                                                                   type: boolean
+                                                                pause:
+                                                                  type: boolean
                                                                 source:
                                                                   items:
                                                                     properties:
@@ -475,6 +495,8 @@ spec:
                                                                 flow_agg:
                                                                   type: string
                                                                 patch_source:
+                                                                  type: boolean
+                                                                pause:
                                                                   type: boolean
                                                                 source:
                                                                   items:
@@ -798,10 +820,14 @@ spec:
                                                                         properties:
                                                                           detected:
                                                                             properties:
+                                                                              driver_managed:
+                                                                                type: boolean
                                                                               eoio:
                                                                                 type: boolean
                                                                               flow:
                                                                                 type: string
+                                                                              pause:
+                                                                                type: boolean
                                                                             type: object
                                                                         type: object
                                                                       meta:
@@ -886,24 +912,36 @@ spec:
                                             properties:
                                               energy:
                                                 properties:
+                                                  driver_managed:
+                                                    type: boolean
                                                   eoio:
                                                     type: boolean
                                                   flow:
                                                     type: string
+                                                  pause:
+                                                    type: boolean
                                                 type: object
                                               energy_rank:
                                                 properties:
+                                                  driver_managed:
+                                                    type: boolean
                                                   eoio:
                                                     type: boolean
                                                   flow:
                                                     type: string
+                                                  pause:
+                                                    type: boolean
                                                 type: object
                                               occupancy:
                                                 properties:
+                                                  driver_managed:
+                                                    type: boolean
                                                   eoio:
                                                     type: boolean
                                                   flow:
                                                     type: string
+                                                  pause:
+                                                    type: boolean
                                                 type: object
                                             type: object
                                           ingress:
@@ -917,6 +955,8 @@ spec:
                                                   flow_agg:
                                                     type: string
                                                   patch_source:
+                                                    type: boolean
+                                                  pause:
                                                     type: boolean
                                                   source:
                                                     items:
@@ -949,6 +989,8 @@ spec:
                                                   flow_agg:
                                                     type: string
                                                   patch_source:
+                                                    type: boolean
+                                                  pause:
                                                     type: boolean
                                                   source:
                                                     items:
