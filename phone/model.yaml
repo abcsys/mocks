@@ -5,7 +5,10 @@ ingress:
   footprint: object
 egress:
   footprint: object
+  spl: object
+meta:
+  report_interval: number
 mount:
   mock.digi.dev/v1/lamps: object
   mock.digi.dev/v1/appliances: object
-  mock.digi.dev/v1/rooms: object
+#  mock.digi.dev/v1/buildings: object

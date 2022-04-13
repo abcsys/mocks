@@ -13,3 +13,4 @@ mount:
   mock.digi.dev/v1/rooms: object
   mock.digi.dev/v1/groups: object
   mock.digi.dev/v1/floors: object
+  mock.digi.dev/v1/phones: object

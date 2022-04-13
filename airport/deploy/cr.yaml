@@ -1,0 +1,14 @@
+apiVersion: mock.digi.dev/v1
+kind: Airport
+metadata:
+  name: {{ .Values.name }}
+spec:
+  egress:
+    delay:
+      flow: |-
+        switch park (case true => head |
+        yield {name:name, arrive_ts:ts} case false => head |
+        yield {name:name, depart_ts:ts}) |
+        name:=any(name),arrive_ts:=any(arrive_ts),depart_ts:=any(depart_ts) |
+        yield {name:name,delay:duration(depart_ts - arrive_ts)} | delay > 0
+      eoio: false

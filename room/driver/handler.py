@@ -27,6 +27,7 @@ Mounts:
 """
 
 gvr_lamp = "mock.digi.dev/v1/lamps"
+gvr_phone = "mock.digi.dev/v1/phones"
 gvr_scene = "mock.digi.dev/v1/scenes"
 gvr_underdesk = "mock.digi.dev/v1/underdesks"
 
@@ -264,6 +265,12 @@ def report():
         "num_human": num_human,
         "human": humans,
     })
+
+    # phone
+    phones = mounts.get(gvr_phone)
+    if phones is not None:
+        record.update({"num_human": max(len(phones), num_human)})
+        digi.logger.info(f"DEBUG: {len(phones)} {num_human}")
 
     # occupancy
     # XXX assume each desk has an underdesk

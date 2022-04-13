@@ -46,13 +46,17 @@ ingress:
   device_energy: object
   occupancy: object
   desk_occupancy: object
+  noise: object
 egress:
   energy: object
   energy_rank: object
   occupancy: object
   desk_occupancy: object
+  people_count: object
+  noise: object
 mount:
   mock.digi.dev/v1/lamps: object
+  mock.digi.dev/v1/phones: object
   mock.digi.dev/v1/scenes: object
   mock.digi.dev/v1/underdesks: object
   mock.digi.dev/v1/occupancies: object

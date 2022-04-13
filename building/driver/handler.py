@@ -3,7 +3,6 @@ from digi import on, util
 
 room_gvr = "mock.digi.dev/v1/rooms"
 
-
 # @on.mount
 # def update_occupancy_flow(proc_view):
 #     rooms = util.get(proc_view, f"mount.'{room_gvr}'", {})
