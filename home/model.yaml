@@ -27,3 +27,4 @@ meta:
   load_interval: number
 mount:
   mock.digi.dev/v1/rooms: object
+  mock.digi.dev/v1/phones: object

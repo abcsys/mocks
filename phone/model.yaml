@@ -11,4 +11,3 @@ meta:
 mount:
   mock.digi.dev/v1/lamps: object
   mock.digi.dev/v1/appliances: object
-#  mock.digi.dev/v1/buildings: object

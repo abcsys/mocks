@@ -12,7 +12,7 @@ spec:
       patch_source: true
     occupancy:
       sources: [ kind:room@occupancy ]
-      flow: "sort -r event_ts | head"
+      flow: "sort -r event_ts | head" # at-most-once
       flow_agg: |-
         put total:=count() |
         occupancy > 0 |
