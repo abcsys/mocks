@@ -3,6 +3,7 @@ import digi.on as on
 import digi.util as util
 from digi import dbox
 
+
 @on.control(cond=dbox.managed)
 def do_control(sv):
     p, b = sv.get("power", {}), sv.get("brightness", {})
@@ -42,8 +43,9 @@ loader = util.Loader(load_fn=report)
 
 @on.meta
 def do_meta(meta):
-    i = meta.get("report_interval", -1)
-    if i < 0:
+    i, managed = meta.get("report_interval", -1), \
+                 meta.get("managed", False)
+    if i < 0 or managed:
         digi.logger.info("Stop loader")
         loader.stop()
     else:

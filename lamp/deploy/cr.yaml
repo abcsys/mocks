@@ -4,16 +4,11 @@ metadata:
   name: {{ .Values.name }}
 spec:
   control:
-    # default settings
     power:
       intent: "off"
     brightness:
       intent: 0.2
   meta:
-    wattage: 12
-    report_interval: -1
     managed: false
-  # data router configs
-  egress:
-    energy:
-      flow: "watt | cut watt,event_ts"
+    report_interval: -1
+    wattage: 12

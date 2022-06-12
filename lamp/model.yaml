@@ -5,9 +5,6 @@ control:
   power: string
   brightness: number
 meta:
-  wattage: number
-  report_interval: number
   managed: boolean
-egress:
-  data: object
-  energy: object
+  report_interval: number
+  wattage: number
