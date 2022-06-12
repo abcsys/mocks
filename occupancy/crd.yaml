@@ -23,23 +23,17 @@ spec:
             type: object
           spec:
             properties:
-              egress:
-                properties:
-                  detected:
-                    properties:
-                      eoio:
-                        type: boolean
-                      flow:
-                        type: string
-                    type: object
-                type: object
               meta:
                 properties:
+                  managed:
+                    type: boolean
                   report_interval:
                     type: number
                 type: object
               obs:
                 properties:
+                  battery_level:
+                    type: number
                   dbm:
                     type: string
                   motion_detected:

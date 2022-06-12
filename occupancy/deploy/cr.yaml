@@ -3,9 +3,6 @@ kind: Occupancy
 metadata:
   name: {{ .Values.name }}
 spec:
-spec:
   meta:
-    report_interval: 5 # avg
-  egress:
-    detected:
-      flow: ""
+    managed: false
+    report_interval: 5

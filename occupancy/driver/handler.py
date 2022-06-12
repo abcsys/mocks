@@ -27,11 +27,10 @@ loader = digi.util.Loader(load_fn=report)
 @on.meta
 def do_meta(meta):
     global loader
-    i = meta.get("report_interval", -1)
-    if i < 0:
-        loader.stop()
-    else:
-        loader.stop()
+    loader.stop()
+    i, managed = meta.get("report_interval", -1), \
+                 meta.get("managed", False)
+    if i > 0 and not managed:
         loader = digi.util.Loader(
             load_fn=report,
             load_interval_fn=make_load_interval(i),

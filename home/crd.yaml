@@ -108,7 +108,29 @@ spec:
                                     pause:
                                       type: boolean
                                   type: object
+                                noise:
+                                  properties:
+                                    driver_managed:
+                                      type: boolean
+                                    eoio:
+                                      type: boolean
+                                    flow:
+                                      type: string
+                                    pause:
+                                      type: boolean
+                                  type: object
                                 occupancy:
+                                  properties:
+                                    driver_managed:
+                                      type: boolean
+                                    eoio:
+                                      type: boolean
+                                    flow:
+                                      type: string
+                                    pause:
+                                      type: boolean
+                                  type: object
+                                people_count:
                                   properties:
                                     driver_managed:
                                       type: boolean
@@ -157,6 +179,40 @@ spec:
                                       type: array
                                   type: object
                                 device_energy:
+                                  properties:
+                                    eoio:
+                                      type: boolean
+                                    flow:
+                                      type: string
+                                    flow_agg:
+                                      type: string
+                                    patch_source:
+                                      type: boolean
+                                    pause:
+                                      type: boolean
+                                    source:
+                                      items:
+                                        properties:
+                                          egress:
+                                            type: string
+                                          group:
+                                            type: string
+                                          kind:
+                                            type: string
+                                          name:
+                                            type: string
+                                          namespace:
+                                            type: string
+                                          version:
+                                            type: string
+                                        type: object
+                                      type: array
+                                    sources:
+                                      items:
+                                        type: string
+                                      type: array
+                                  type: object
+                                noise:
                                   properties:
                                     eoio:
                                       type: boolean
@@ -248,7 +304,7 @@ spec:
                                         type: number
                                       mode:
                                         type: string
-                                      spec:
+                                      spec: &id001
                                         properties:
                                           control:
                                             properties:
@@ -335,7 +391,7 @@ spec:
                                         type: number
                                       mode:
                                         type: string
-                                      spec:
+                                      spec: &id002
                                         properties:
                                           control:
                                             properties:
@@ -358,21 +414,31 @@ spec:
                                             properties:
                                               data:
                                                 properties:
+                                                  driver_managed:
+                                                    type: boolean
                                                   eoio:
                                                     type: boolean
                                                   flow:
                                                     type: string
+                                                  pause:
+                                                    type: boolean
                                                 type: object
                                               energy:
                                                 properties:
+                                                  driver_managed:
+                                                    type: boolean
                                                   eoio:
                                                     type: boolean
                                                   flow:
                                                     type: string
+                                                  pause:
+                                                    type: boolean
                                                 type: object
                                             type: object
                                           meta:
                                             properties:
+                                              managed:
+                                                type: boolean
                                               report_interval:
                                                 type: number
                                               wattage:
@@ -392,14 +458,98 @@ spec:
                                         type: string
                                       spec:
                                         properties:
+                                          meta:
+                                            properties:
+                                              managed:
+                                                type: boolean
+                                              report_interval:
+                                                type: number
+                                            type: object
+                                          obs:
+                                            properties:
+                                              battery_level:
+                                                type: number
+                                              dbm:
+                                                type: string
+                                              motion_detected:
+                                                type: boolean
+                                              supply_voltage:
+                                                type: string
+                                            type: object
+                                        type: object
+                                      status:
+                                        type: string
+                                    type: object
+                                  type: object
+                                mock.digi.dev/v1/phones:
+                                  additionalProperties:
+                                    properties:
+                                      generation:
+                                        type: number
+                                      mode:
+                                        type: string
+                                      spec:
+                                        properties:
                                           egress:
                                             properties:
-                                              detected:
+                                              footprint:
+                                                properties:
+                                                  driver_managed:
+                                                    type: boolean
+                                                  eoio:
+                                                    type: boolean
+                                                  flow:
+                                                    type: string
+                                                  pause:
+                                                    type: boolean
+                                                type: object
+                                              spl:
+                                                properties:
+                                                  driver_managed:
+                                                    type: boolean
+                                                  eoio:
+                                                    type: boolean
+                                                  flow:
+                                                    type: string
+                                                  pause:
+                                                    type: boolean
+                                                type: object
+                                            type: object
+                                          ingress:
+                                            properties:
+                                              footprint:
                                                 properties:
                                                   eoio:
                                                     type: boolean
                                                   flow:
                                                     type: string
+                                                  flow_agg:
+                                                    type: string
+                                                  patch_source:
+                                                    type: boolean
+                                                  pause:
+                                                    type: boolean
+                                                  source:
+                                                    items:
+                                                      properties:
+                                                        egress:
+                                                          type: string
+                                                        group:
+                                                          type: string
+                                                        kind:
+                                                          type: string
+                                                        name:
+                                                          type: string
+                                                        namespace:
+                                                          type: string
+                                                        version:
+                                                          type: string
+                                                      type: object
+                                                    type: array
+                                                  sources:
+                                                    items:
+                                                      type: string
+                                                    type: array
                                                 type: object
                                             type: object
                                           meta:
@@ -407,14 +557,32 @@ spec:
                                               report_interval:
                                                 type: number
                                             type: object
-                                          obs:
+                                          mount:
                                             properties:
-                                              dbm:
-                                                type: string
-                                              motion_detected:
-                                                type: boolean
-                                              supply_voltage:
-                                                type: string
+                                              mock.digi.dev/v1/appliances:
+                                                additionalProperties:
+                                                  properties:
+                                                    generation:
+                                                      type: number
+                                                    mode:
+                                                      type: string
+                                                    spec: *id001
+                                                    status:
+                                                      type: string
+                                                  type: object
+                                                type: object
+                                              mock.digi.dev/v1/lamps:
+                                                additionalProperties:
+                                                  properties:
+                                                    generation:
+                                                      type: number
+                                                    mode:
+                                                      type: string
+                                                    spec: *id002
+                                                    status:
+                                                      type: string
+                                                  type: object
+                                                type: object
                                             type: object
                                         type: object
                                       status:

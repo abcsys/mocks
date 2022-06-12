@@ -744,21 +744,31 @@ spec:
                                                                         properties:
                                                                           data:
                                                                             properties:
+                                                                              driver_managed:
+                                                                                type: boolean
                                                                               eoio:
                                                                                 type: boolean
                                                                               flow:
                                                                                 type: string
+                                                                              pause:
+                                                                                type: boolean
                                                                             type: object
                                                                           energy:
                                                                             properties:
+                                                                              driver_managed:
+                                                                                type: boolean
                                                                               eoio:
                                                                                 type: boolean
                                                                               flow:
                                                                                 type: string
+                                                                              pause:
+                                                                                type: boolean
                                                                             type: object
                                                                         type: object
                                                                       meta:
                                                                         properties:
+                                                                          managed:
+                                                                            type: boolean
                                                                           report_interval:
                                                                             type: number
                                                                           wattage:
@@ -778,23 +788,17 @@ spec:
                                                                     type: string
                                                                   spec:
                                                                     properties:
-                                                                      egress:
-                                                                        properties:
-                                                                          detected:
-                                                                            properties:
-                                                                              eoio:
-                                                                                type: boolean
-                                                                              flow:
-                                                                                type: string
-                                                                            type: object
-                                                                        type: object
                                                                       meta:
                                                                         properties:
+                                                                          managed:
+                                                                            type: boolean
                                                                           report_interval:
                                                                             type: number
                                                                         type: object
                                                                       obs:
                                                                         properties:
+                                                                          battery_level:
+                                                                            type: number
                                                                           dbm:
                                                                             type: string
                                                                           motion_detected:
