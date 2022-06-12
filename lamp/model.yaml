@@ -7,6 +7,7 @@ control:
 meta:
   wattage: number
   report_interval: number
+  managed: boolean
 egress:
   data: object
   energy: object

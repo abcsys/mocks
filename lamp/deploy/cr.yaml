@@ -12,6 +12,7 @@ spec:
   meta:
     wattage: 12
     report_interval: -1
+    managed: false
   # data router configs
   egress:
     energy:

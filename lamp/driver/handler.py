@@ -1,9 +1,9 @@
 import digi
 import digi.on as on
 import digi.util as util
+from digi import dbox
 
-
-@on.control
+@on.control(cond=dbox.managed)
 def do_control(sv):
     p, b = sv.get("power", {}), sv.get("brightness", {})
     p_old_status, b_old_status = p.get("status"), b.get("status")
