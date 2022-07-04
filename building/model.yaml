@@ -1,14 +1,11 @@
 group: mock.digi.dev
 version: v1
 kind: Building
-ingress:
-  energy: object
-  room_occupancy: object
-  occupancy: object
-egress:
-  energy: object
-  energy_rank: object
-  occupancy: object
+meta:
+  managed: boolean
+  gen_interval: number
+obs:
+  num_human: number
 mount:
   mock.digi.dev/v1/rooms: object
   mock.digi.dev/v1/groups: object

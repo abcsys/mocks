@@ -1,28 +1,42 @@
 import digi
-from digi import on, util
+import digi.on as on
+import digi.util as util
 
-room_gvr = "mock.digi.dev/v1/rooms"
-
-# @on.mount
-# def update_occupancy_flow(proc_view):
-#     rooms = util.get(proc_view, f"mount.'{room_gvr}'", {})
-#     num_room = len(rooms)
-#     if num_room == 0:
-#         digi.util.update(proc_view, "egress.occupancy.pause", True)
-#     else:
-#         digi.util.update(proc_view, "egress.occupancy.pause", False)
-#         digi.util.update(proc_view, "egress.occupancy.flow",
-#                          f"sort -r event_ts | head | "
-#                          f"occupancy > 0.0 | count := count() | "
-#                          f"occupancy:=cast(count, <float64>)/{len(rooms)} |"
-#                          f"cut occupancy")
+from digi import dbox
+import random
 
 
-# @on.pool(in_flow="")
-# def gen_occupancy(records):
-#     digi.logger.info(f"Records: {records}")
-#     if len(records) == 0:
-#         return
+@on.mount
+def do_manage(mounts):
+    dbox.manage(mounts)
+
+
+# event
+@dbox.loop
+def event():
+    num_human = random.randint(0, 2)
+    digi.model.patch({
+        "obs": {"num_human": num_human}
+    })
+
+
+# sim
+@on.obs
+def do_obs(sv, mounts):
+    rooms = mounts.get(util.gvr_of("room"), {})
+    names, num_human = list(rooms.keys()), sv.get("num_human", 0)
+    if len(names) < 1:
+        return
+    picked = set(random.choices(names, k=num_human))
+    for name, room in rooms.items():
+        util.update(room, "spec.obs.human_presence", name in picked)
+
+
+# log
+@on.obs
+def log(sv):
+    digi.pool.load([sv])
+
 
 if __name__ == '__main__':
     digi.run()

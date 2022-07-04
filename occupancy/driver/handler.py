@@ -1,9 +1,10 @@
 import digi
 from digi import on
 import random
+from digi import dbox
 
-
-def report():
+@dbox.loop
+def event():
     motion = random.choice([True, False])
     digi.model.patch({
         "obs": {
@@ -13,29 +14,13 @@ def report():
     digi.pool.load([{"motion": motion}])
 
 
-def make_load_interval(avg_t):
+def make_event_interval(avg_t):
     def fn() -> int:
         min_, max_ = int(avg_t / 2), int(avg_t * 2)
         return random.randint(min_, max_)
 
     return fn
 
-
-loader = digi.util.Loader(load_fn=report)
-
-
-@on.meta
-def do_meta(meta):
-    global loader
-    loader.stop()
-    i, managed = meta.get("report_interval", -1), \
-                 meta.get("managed", False)
-    if i > 0 and not managed:
-        loader = digi.util.Loader(
-            load_fn=report,
-            load_interval_fn=make_load_interval(i),
-        )
-        loader.start()
 
 
 if __name__ == '__main__':

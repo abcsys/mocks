@@ -2,7 +2,7 @@ group: mock.digi.dev
 version: v1
 kind: Occupancy
 meta:
-  report_interval: number
+  gen_interval: number
   managed: boolean
 obs:
   motion_detected: boolean

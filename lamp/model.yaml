@@ -6,5 +6,5 @@ control:
   brightness: number
 meta:
   managed: boolean
-  report_interval: number
+  gen_interval: number
   wattage: number

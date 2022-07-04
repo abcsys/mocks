@@ -3,6 +3,9 @@ version: v1
 kind: Room
 meta:
   managed: boolean
+  gen_interval: number
+obs:
+  human_presence: boolean
 mount:
   mock.digi.dev/v1/lamps: object
   mock.digi.dev/v1/phones: object

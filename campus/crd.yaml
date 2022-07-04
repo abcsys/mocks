@@ -125,146 +125,12 @@ spec:
                           type: string
                         spec:
                           properties:
-                            egress:
+                            meta:
                               properties:
-                                energy:
-                                  properties:
-                                    driver_managed:
-                                      type: boolean
-                                    eoio:
-                                      type: boolean
-                                    flow:
-                                      type: string
-                                    pause:
-                                      type: boolean
-                                  type: object
-                                energy_rank:
-                                  properties:
-                                    driver_managed:
-                                      type: boolean
-                                    eoio:
-                                      type: boolean
-                                    flow:
-                                      type: string
-                                    pause:
-                                      type: boolean
-                                  type: object
-                                occupancy:
-                                  properties:
-                                    driver_managed:
-                                      type: boolean
-                                    eoio:
-                                      type: boolean
-                                    flow:
-                                      type: string
-                                    pause:
-                                      type: boolean
-                                  type: object
-                              type: object
-                            ingress:
-                              properties:
-                                energy:
-                                  properties:
-                                    eoio:
-                                      type: boolean
-                                    flow:
-                                      type: string
-                                    flow_agg:
-                                      type: string
-                                    patch_source:
-                                      type: boolean
-                                    pause:
-                                      type: boolean
-                                    source:
-                                      items:
-                                        properties:
-                                          egress:
-                                            type: string
-                                          group:
-                                            type: string
-                                          kind:
-                                            type: string
-                                          name:
-                                            type: string
-                                          namespace:
-                                            type: string
-                                          version:
-                                            type: string
-                                        type: object
-                                      type: array
-                                    sources:
-                                      items:
-                                        type: string
-                                      type: array
-                                  type: object
-                                occupancy:
-                                  properties:
-                                    eoio:
-                                      type: boolean
-                                    flow:
-                                      type: string
-                                    flow_agg:
-                                      type: string
-                                    patch_source:
-                                      type: boolean
-                                    pause:
-                                      type: boolean
-                                    source:
-                                      items:
-                                        properties:
-                                          egress:
-                                            type: string
-                                          group:
-                                            type: string
-                                          kind:
-                                            type: string
-                                          name:
-                                            type: string
-                                          namespace:
-                                            type: string
-                                          version:
-                                            type: string
-                                        type: object
-                                      type: array
-                                    sources:
-                                      items:
-                                        type: string
-                                      type: array
-                                  type: object
-                                room_occupancy:
-                                  properties:
-                                    eoio:
-                                      type: boolean
-                                    flow:
-                                      type: string
-                                    flow_agg:
-                                      type: string
-                                    patch_source:
-                                      type: boolean
-                                    pause:
-                                      type: boolean
-                                    source:
-                                      items:
-                                        properties:
-                                          egress:
-                                            type: string
-                                          group:
-                                            type: string
-                                          kind:
-                                            type: string
-                                          name:
-                                            type: string
-                                          namespace:
-                                            type: string
-                                          version:
-                                            type: string
-                                        type: object
-                                      type: array
-                                    sources:
-                                      items:
-                                        type: string
-                                      type: array
-                                  type: object
+                                gen_interval:
+                                  type: number
+                                managed:
+                                  type: boolean
                               type: object
                             mount:
                               properties:
@@ -379,251 +245,12 @@ spec:
                                                       type: string
                                                     spec: &id003
                                                       properties:
-                                                        control:
-                                                          properties:
-                                                            ambiance_color:
-                                                              properties:
-                                                                intent:
-                                                                  type: string
-                                                                status:
-                                                                  type: string
-                                                              type: object
-                                                            brightness:
-                                                              properties:
-                                                                intent:
-                                                                  type: number
-                                                                status:
-                                                                  type: number
-                                                              type: object
-                                                            mode:
-                                                              properties:
-                                                                intent:
-                                                                  type: string
-                                                                status:
-                                                                  type: string
-                                                              type: object
-                                                          type: object
-                                                        egress:
-                                                          properties:
-                                                            desk_occupancy:
-                                                              properties:
-                                                                driver_managed:
-                                                                  type: boolean
-                                                                eoio:
-                                                                  type: boolean
-                                                                flow:
-                                                                  type: string
-                                                                pause:
-                                                                  type: boolean
-                                                              type: object
-                                                            energy:
-                                                              properties:
-                                                                driver_managed:
-                                                                  type: boolean
-                                                                eoio:
-                                                                  type: boolean
-                                                                flow:
-                                                                  type: string
-                                                                pause:
-                                                                  type: boolean
-                                                              type: object
-                                                            energy_rank:
-                                                              properties:
-                                                                driver_managed:
-                                                                  type: boolean
-                                                                eoio:
-                                                                  type: boolean
-                                                                flow:
-                                                                  type: string
-                                                                pause:
-                                                                  type: boolean
-                                                              type: object
-                                                            noise:
-                                                              properties:
-                                                                driver_managed:
-                                                                  type: boolean
-                                                                eoio:
-                                                                  type: boolean
-                                                                flow:
-                                                                  type: string
-                                                                pause:
-                                                                  type: boolean
-                                                              type: object
-                                                            occupancy:
-                                                              properties:
-                                                                driver_managed:
-                                                                  type: boolean
-                                                                eoio:
-                                                                  type: boolean
-                                                                flow:
-                                                                  type: string
-                                                                pause:
-                                                                  type: boolean
-                                                              type: object
-                                                            people_count:
-                                                              properties:
-                                                                driver_managed:
-                                                                  type: boolean
-                                                                eoio:
-                                                                  type: boolean
-                                                                flow:
-                                                                  type: string
-                                                                pause:
-                                                                  type: boolean
-                                                              type: object
-                                                          type: object
-                                                        ingress:
-                                                          properties:
-                                                            desk_occupancy:
-                                                              properties:
-                                                                eoio:
-                                                                  type: boolean
-                                                                flow:
-                                                                  type: string
-                                                                flow_agg:
-                                                                  type: string
-                                                                patch_source:
-                                                                  type: boolean
-                                                                pause:
-                                                                  type: boolean
-                                                                source:
-                                                                  items:
-                                                                    properties:
-                                                                      egress:
-                                                                        type: string
-                                                                      group:
-                                                                        type: string
-                                                                      kind:
-                                                                        type: string
-                                                                      name:
-                                                                        type: string
-                                                                      namespace:
-                                                                        type: string
-                                                                      version:
-                                                                        type: string
-                                                                    type: object
-                                                                  type: array
-                                                                sources:
-                                                                  items:
-                                                                    type: string
-                                                                  type: array
-                                                              type: object
-                                                            device_energy:
-                                                              properties:
-                                                                eoio:
-                                                                  type: boolean
-                                                                flow:
-                                                                  type: string
-                                                                flow_agg:
-                                                                  type: string
-                                                                patch_source:
-                                                                  type: boolean
-                                                                pause:
-                                                                  type: boolean
-                                                                source:
-                                                                  items:
-                                                                    properties:
-                                                                      egress:
-                                                                        type: string
-                                                                      group:
-                                                                        type: string
-                                                                      kind:
-                                                                        type: string
-                                                                      name:
-                                                                        type: string
-                                                                      namespace:
-                                                                        type: string
-                                                                      version:
-                                                                        type: string
-                                                                    type: object
-                                                                  type: array
-                                                                sources:
-                                                                  items:
-                                                                    type: string
-                                                                  type: array
-                                                              type: object
-                                                            noise:
-                                                              properties:
-                                                                eoio:
-                                                                  type: boolean
-                                                                flow:
-                                                                  type: string
-                                                                flow_agg:
-                                                                  type: string
-                                                                patch_source:
-                                                                  type: boolean
-                                                                pause:
-                                                                  type: boolean
-                                                                source:
-                                                                  items:
-                                                                    properties:
-                                                                      egress:
-                                                                        type: string
-                                                                      group:
-                                                                        type: string
-                                                                      kind:
-                                                                        type: string
-                                                                      name:
-                                                                        type: string
-                                                                      namespace:
-                                                                        type: string
-                                                                      version:
-                                                                        type: string
-                                                                    type: object
-                                                                  type: array
-                                                                sources:
-                                                                  items:
-                                                                    type: string
-                                                                  type: array
-                                                              type: object
-                                                            occupancy:
-                                                              properties:
-                                                                eoio:
-                                                                  type: boolean
-                                                                flow:
-                                                                  type: string
-                                                                flow_agg:
-                                                                  type: string
-                                                                patch_source:
-                                                                  type: boolean
-                                                                pause:
-                                                                  type: boolean
-                                                                source:
-                                                                  items:
-                                                                    properties:
-                                                                      egress:
-                                                                        type: string
-                                                                      group:
-                                                                        type: string
-                                                                      kind:
-                                                                        type: string
-                                                                      name:
-                                                                        type: string
-                                                                      namespace:
-                                                                        type: string
-                                                                      version:
-                                                                        type: string
-                                                                    type: object
-                                                                  type: array
-                                                                sources:
-                                                                  items:
-                                                                    type: string
-                                                                  type: array
-                                                              type: object
-                                                          type: object
                                                         meta:
                                                           properties:
-                                                            modeConfig:
-                                                              additionalProperties:
-                                                                properties:
-                                                                  brightness:
-                                                                    type: number
-                                                                  power:
-                                                                    type: string
-                                                                type: object
-                                                              type: object
-                                                            report_interval:
+                                                            gen_interval:
                                                               type: number
+                                                            managed:
+                                                              type: boolean
                                                           type: object
                                                         mount:
                                                           properties:
@@ -742,10 +369,10 @@ spec:
                                                                         type: object
                                                                       meta:
                                                                         properties:
+                                                                          gen_interval:
+                                                                            type: number
                                                                           managed:
                                                                             type: boolean
-                                                                          report_interval:
-                                                                            type: number
                                                                           wattage:
                                                                             type: number
                                                                         type: object
@@ -765,10 +392,10 @@ spec:
                                                                     properties:
                                                                       meta:
                                                                         properties:
+                                                                          gen_interval:
+                                                                            type: number
                                                                           managed:
                                                                             type: boolean
-                                                                          report_interval:
-                                                                            type: number
                                                                         type: object
                                                                       obs:
                                                                         properties:
@@ -1031,39 +658,6 @@ spec:
                                                           properties:
                                                             human_presence:
                                                               type: boolean
-                                                            objects:
-                                                              items:
-                                                                properties:
-                                                                  class:
-                                                                    type: string
-                                                                  location:
-                                                                    properties:
-                                                                      h:
-                                                                        type: number
-                                                                      w:
-                                                                        type: number
-                                                                      x1:
-                                                                        type: number
-                                                                      x2:
-                                                                        type: number
-                                                                    type: object
-                                                                  name:
-                                                                    type: string
-                                                                type: object
-                                                              type: array
-                                                            reason:
-                                                              type: string
-                                                          type: object
-                                                        reflex:
-                                                          additionalProperties:
-                                                            properties:
-                                                              policy:
-                                                                type: string
-                                                              priority:
-                                                                type: number
-                                                              processor:
-                                                                type: string
-                                                            type: object
                                                           type: object
                                                       type: object
                                                     status:
@@ -1236,6 +830,11 @@ spec:
                                         type: string
                                     type: object
                                   type: object
+                              type: object
+                            obs:
+                              properties:
+                                num_human:
+                                  type: number
                               type: object
                           type: object
                         status:

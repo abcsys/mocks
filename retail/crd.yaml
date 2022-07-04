@@ -177,10 +177,10 @@ spec:
                                             type: object
                                           meta:
                                             properties:
+                                              gen_interval:
+                                                type: number
                                               managed:
                                                 type: boolean
-                                              report_interval:
-                                                type: number
                                               wattage:
                                                 type: number
                                             type: object

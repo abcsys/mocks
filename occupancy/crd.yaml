@@ -25,10 +25,10 @@ spec:
             properties:
               meta:
                 properties:
+                  gen_interval:
+                    type: number
                   managed:
                     type: boolean
-                  report_interval:
-                    type: number
                 type: object
               obs:
                 properties:

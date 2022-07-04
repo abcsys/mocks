@@ -5,3 +5,4 @@ metadata:
 spec:
   meta:
     managed: false
+    gen_interval: 5
