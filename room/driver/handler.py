@@ -3,21 +3,14 @@ import digi.on as on
 import digi.util as util
 
 from digi import dbox
-import random
-
-
-@on.mount
-def do_manage(mounts):
-    dbox.manage(mounts)
+dbox.init()
 
 
 # event
 @dbox.loop
 def event():
-    presence = random.choice([True, False])
-    digi.model.patch({
-        "obs": {"human_presence": presence}
-    })
+    presence = dbox.random.choice([True, False])
+    digi.model.patch("obs.human_presence", presence)
 
 
 # sim
@@ -27,11 +20,6 @@ def do_obs(sv, mounts):
     for _, oc in ocs.items():
         util.update(oc, "spec.obs.motion_detected",
                     sv.get("human_presence", False))
-
-
-# log
-@on.obs
-def log(sv):
     digi.pool.load([sv])
 
 

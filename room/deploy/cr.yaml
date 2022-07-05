@@ -6,3 +6,4 @@ spec:
   meta:
     managed: false
     gen_interval: 5
+    seed: 42

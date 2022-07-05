@@ -4,6 +4,7 @@ kind: Room
 meta:
   managed: boolean
   gen_interval: number
+  seed: number
 obs:
   human_presence: boolean
 mount:
