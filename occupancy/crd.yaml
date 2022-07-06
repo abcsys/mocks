@@ -29,6 +29,8 @@ spec:
                     type: number
                   managed:
                     type: boolean
+                  seed:
+                    type: number
                 type: object
               obs:
                 properties:

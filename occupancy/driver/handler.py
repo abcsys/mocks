@@ -1,11 +1,11 @@
 import digi
 from digi import on, dbox
+dbox.init()
 
 
 @dbox.loop
 def event():
     motion = dbox.random.choice([True, False])
-    digi.logger.info(f"DEBUG {motion}")
     digi.model.patch("obs.motion_detected", motion)
 
 
