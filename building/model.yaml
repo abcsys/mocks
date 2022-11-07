@@ -7,6 +7,13 @@ meta:
   seed: number
 obs:
   num_human: number
+ingress:
+  occupancy: object
+  room_occupancy: object
+  energy: object
+egress:
+  energy: object
+  occupancy: object
 mount:
   mock.digi.dev/v1/rooms: object
   mock.digi.dev/v1/groups: object

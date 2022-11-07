@@ -177,6 +177,8 @@ spec:
                                             type: object
                                           meta:
                                             properties:
+                                              actuation_delay:
+                                                type: number
                                               gen_interval:
                                                 type: number
                                               managed:

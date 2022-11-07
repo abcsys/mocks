@@ -8,3 +8,4 @@ meta:
   managed: boolean
   gen_interval: number
   wattage: number
+  actuation_delay: number

@@ -141,6 +141,20 @@ spec:
                           type: string
                         spec:
                           properties:
+                            egress:
+                              properties:
+                                occupancy:
+                                  properties:
+                                    driver_managed:
+                                      type: boolean
+                                    eoio:
+                                      type: boolean
+                                    flow:
+                                      type: string
+                                    pause:
+                                      type: boolean
+                                  type: object
+                              type: object
                             meta:
                               properties:
                                 gen_interval:
@@ -267,6 +281,8 @@ spec:
                                             type: object
                                           meta:
                                             properties:
+                                              actuation_delay:
+                                                type: number
                                               gen_interval:
                                                 type: number
                                               managed:

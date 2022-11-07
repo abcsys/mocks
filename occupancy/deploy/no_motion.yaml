@@ -5,5 +5,7 @@ metadata:
 spec:
   meta:
     managed: false
-    gen_interval: 1
+    gen_interval: -1
     seed: 42
+  obs:
+    motion_detected: false

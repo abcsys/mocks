@@ -1,6 +1,7 @@
 import digi
 import digi.on as on
 import digi.util as util
+import random
 
 from digi import dbox
 dbox.init()
@@ -13,13 +14,17 @@ def event():
     digi.model.patch("obs.human_presence", presence)
 
 
+occupancy = random.random() * 2
+
 # sim
 @on.obs
 def do_obs(sv, mounts):
+    global occupancy
     ocs = mounts.get(util.gvr_of("occupancy"), {})
     for _, oc in ocs.items():
         util.update(oc, "spec.obs.motion_detected",
                     sv.get("human_presence", False))
+    sv["occupancy"] = min([0.1, round(int(sv.get("human_presence", False)) * occupancy * random.random(), 2)])
     digi.pool.load([sv])
 
 

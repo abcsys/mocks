@@ -12,3 +12,4 @@ spec:
     managed: false
     gen_interval: -1
     wattage: 12
+    actuation_delay: 0.1 # s

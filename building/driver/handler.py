@@ -8,7 +8,7 @@ dbox.init()
 
 @dbox.loop
 def event():
-    num_human = dbox.event_random.randint(0, 2)
+    num_human = dbox.event_random.randint(0, 4)
     digi.model.patch("obs.num_human", num_human)
 
 
@@ -19,7 +19,7 @@ def do_obs(sv, mounts):
     names, num_human = list(rooms.keys()), sv.get("num_human", 0)
     if len(names) < 1:
         return
-    picked = set(dbox.sim_random.choices(names, k=num_human))
+    picked = set(dbox.sim_random.choices(names, k=num_human, weights=tuple(range(1, len(names) + 1))))
     for name, room in rooms.items():
         util.update(room, "spec.obs.human_presence", name in picked)
 
