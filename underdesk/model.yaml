@@ -2,10 +2,11 @@ group: mock.digi.dev
 version: v1
 kind: Underdesk
 meta:
-  report_interval: number
+  gen_interval: number
+  managed: boolean
+  seed: number
 obs:
   motion_detected: boolean
-  dbm: string
+  battery_level: number
   supply_voltage: string
-egress:
-  detected: object
+  dbm: string

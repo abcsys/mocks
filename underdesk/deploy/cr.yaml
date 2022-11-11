@@ -4,7 +4,6 @@ metadata:
   name: {{ .Values.name }}
 spec:
   meta:
-    report_interval: 5 # avg
-  egress:
-    detected:
-      flow: ""
+    managed: false
+    gen_interval: 1
+    seed: 42
