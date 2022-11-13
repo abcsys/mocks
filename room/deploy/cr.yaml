@@ -5,8 +5,8 @@ metadata:
 spec:
   meta:
     managed: false
-    gen_interval: -1
+    gen_interval: 3
     seed: 42
-  egress:
-    occupancy:
-      flow: "cut occupancy,event_ts"
+#  egress:
+#    occupancy:
+#      flow: "cut occupancy,event_ts"

@@ -24,6 +24,11 @@ def do_obs(sv, mounts):
     for _, oc in ocs.items():
         util.update(oc, "spec.obs.motion_detected",
                     sv.get("human_presence", False))
+    uds = mounts.get(util.gvr_of("underdesk"), {})
+    for _, ud in uds.items():
+        util.update(ud, "spec.obs.motion_detected",
+                    sv.get("human_presence", False))
+
     sv["occupancy"] = min([0.1, round(int(sv.get("human_presence", False)) * occupancy * random.random(), 2)])
     digi.pool.load([sv])
 
