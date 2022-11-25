@@ -5,7 +5,7 @@ plane_gvr = "mock.digi.dev/v1/planes"
 planes = set()
 
 @on.mount
-def handle_ship(mount):
+def handle_flight(mount):
     global planes
     new_planes = set()
     for plane, _ in mount.get(plane_gvr, {}).items():

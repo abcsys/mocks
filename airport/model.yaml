@@ -1,6 +1,19 @@
 group: mock.digi.dev
 version: v1
 kind: Airport
+obs:
+  flights:
+    openapi:
+      additionalProperties:
+        properties:
+          number:
+            type: string
+          make:
+            type: string
+          model:
+            type: string
+        type: object
+      type: object
 egress:
   delay: object
 mount:
