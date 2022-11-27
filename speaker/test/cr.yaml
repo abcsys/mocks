@@ -1,5 +1,5 @@
 apiVersion: mock.digi.dev/v1
 kind: speaker
 metadata:
-  name: speaker-test
+  name: speaker
 spec: {}

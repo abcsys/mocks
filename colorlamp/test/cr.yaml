@@ -1,5 +1,5 @@
 apiVersion: mock.digi.dev/v1
-kind: colorlamp
+kind: Colorlamp
 metadata:
-  name: colorlamp-test
+  name: colorlamp
 spec: {}

@@ -1,5 +1,5 @@
 apiVersion: mock.digi.dev/v1
 kind: roomba
 metadata:
-  name: roomba-test
+  name: roomba
 spec: {}

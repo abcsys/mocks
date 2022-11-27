@@ -1,7 +1,7 @@
 apiVersion: mock.digi.dev/v1
 kind: Multiscene
 metadata:
-  name: multiscene-test
+  name: multiscene
 spec:
   data:
     output:

@@ -1,5 +1,5 @@
 apiVersion: mock.digi.dev/v1
 kind: Ship
 metadata:
-  name: ship-test
+  name: ship
 spec: {}

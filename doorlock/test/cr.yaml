@@ -1,5 +1,5 @@
 apiVersion: digi.dev/v1
-kind: doorlock
+kind: Doorlock
 metadata:
-  name: doorlock-test
+  name: doorlock
 spec: {}

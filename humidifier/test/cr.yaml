@@ -1,5 +1,5 @@
 apiVersion: mock.digi.dev/v1
 kind: humidifier
 metadata:
-  name: humidifier-test
+  name: humidifier
 spec: {}

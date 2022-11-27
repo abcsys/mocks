@@ -1,5 +1,5 @@
 apiVersion: mock.digi.dev/v1
 kind: Cargo
 metadata:
-  name: cargo-test
+  name: cargo
 spec: {}

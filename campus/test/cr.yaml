@@ -1,5 +1,5 @@
 apiVersion: mock.digi.dev/v1
 kind: Campus
 metadata:
-  name: campus-test
+  name: campus
 spec: {}

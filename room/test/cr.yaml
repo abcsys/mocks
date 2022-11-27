@@ -1,10 +1,4 @@
 apiVersion: mock.digi.dev/v1
 kind: Room
 metadata:
-  name: room-test
-spec:
-  control:
-    brightness:
-      intent: 0.8
-    mode:
-      intent: idle
+  name: room

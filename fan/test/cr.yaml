@@ -1,5 +1,5 @@
 apiVersion: mock.digi.dev/v1
 kind: fan
 metadata:
-  name: fan-test
+  name: fan
 spec: {}

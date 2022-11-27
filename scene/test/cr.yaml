@@ -1,7 +1,7 @@
 apiVersion: mock.digi.dev/v1
 kind: Scene
 metadata:
-  name: scene-test
+  name: scene
 spec:
   data:
     input:

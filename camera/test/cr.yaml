@@ -1,5 +1,5 @@
 apiVersion: mock.digi.dev/v1
 kind: camera
 metadata:
-  name: camera-test
+  name: camera
 spec: {}
